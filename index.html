@@ -102,6 +102,338 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/09/2670466085/">You&#8217;re Asking for the Wrong Thing. When Pull Should Be Push.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-09T00:00:00+00:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There was a great <a title="discussion" href="http://www.bbc.co.uk/programmes/b00x7c36">discussion</a> on Radio 4 last week about freeing up National Rail Enquires (NRE) departure board data for developers to use. There were some great points made by both sides. But the whole thing was quite black and white and didn’t really go into the more delicate and interesting issues.  I often find in these discussions that people conflate a feed being publicly available and having permission to use that feed. They also conflate a feed with static data. Nonetheless, it&#8217;s great to have these discussions out in the open in a civilised and constructive manner.</p>
+
+<p>First, I&#8217;d like to make my background clear. In 2008 I worked for a company called Kizoom. Kizoom had been creating mobile applications, mobile websites and websites with train information for nearly 10 years. We&#8217;d had a long standing license with NRE to do this. In November 2008 I released MyRail Lite to the Apple AppStore. It displayed departure boards and calling patterns for UK trains. It was a moderate success and many people liked it. It was free too. We removed the application from the store in December 2008. I don&#8217;t want to go into the details of that here. It&#8217;s not really relevant to this discussion. However, I learnt many things from the episode. I learnt how to make iPhone applications. I learnt that business can be very personal. Personal in terms of making a connection with customers. Personal in terms of business relationships; both good and bad ones. MyRail Lite opened many doors and not long after I got to work on thetrainline&#8217;s iPhone application. Something I still do today. So on balance it was a great thing. It heartens me today that people still talk about it.</p>
+
+<p>So, back to the National Rail Enquires data. To be honest, departure boards are not particularly interesting and the scope for doing exciting things is a little limited. It almost feels that once you&#8217;ve seen one departure board app, you&#8217;ve seen them all. [That&#8217;s a bit unfair, as the same does not seem to be true of Twitter clients]. I&#8217;m not saying you can&#8217;t do interesting things with departure board data, just that there is a far more exciting feed available.  As you may or may not be aware there is another way that NRE could give the data out to developers. Instead of the departure board, or pull feed as I shall call it, there is also a push feed. The push feed is like a fire hose (not sure what this means?) of train movements. As each train moves over sensors, periodically placed along the tracks, an event is generated (For more information see <a title="here" href="http://www.rail-reg.gov.uk/upload/pdf/rtti-decision-011209.pdf">here</a> [Page 9]). As you can imagine there are quite a lot of train movements. At Kizoom we saw the value of the push feed and built a really cool alerting engine with it. Internally we called it Clarence. On the outside we called it the Travel Angel. We could tell you when your train journey was going to be delayed via an SMS. We could even tell you when to get ready to change trains. We could do this because we knew where all the trains were. </p>
+
+<p>Another more subtle advantage of the push feed is that it gives NRE better load independence with respect to the number of apps in the wild. Each app developer would be given a single push feed connection. It is then your job as a developer to handle the transformation of the feed into interesting information and scale appropriately. So if you want to build a departure board feed then you&#8217;ll have to handle the transformations and scalability yourself. NRE are protected as each developer only gets one push feed connection. With the current pull feed, each user of an application is making a connection to NRE&#8217;s servers.</p>
+
+<p>Yes, it will be harder to work with. Yes, you won&#8217;t be able to simply plug your app into the feed and spit the data out. Yes, you&#8217;ll have to think about how you&#8217;re going to scale. But the rewards could be great. You could do things like infer problems on the lines, keep historical data and make pretty graphs. You could even create an alerting engine. You could analyse what happens to trains when the weather is bad. Maybe there are new ways to help commuters in these situations? Is it really helpful to tell people the next train is in 95 minutes from Waterloo? What does that really mean?</p>
+
+<p>So to summarise, it&#8217;s great that NRE are giving out licences to the departure board feed. But what I&#8217;d really like to see is the push feed opened up. Because I believe that with the push feed we&#8217;ll really see what can be done with this data. Let&#8217;s aim higher and look beyond the departure board.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/01/2557330270/">My Year in Numbers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-01T00:00:00+00:00" pubdate data-updated="true">Jan 1<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here are some statistics for the year 2010 relating to me. Probably not that interesting, but here you go.</p>
+
+<h2>Email</h2>
+
+<p>My primary domain is lyonanderson.com. Most of my correspondence is via this account. I don&#8217;t include my work email here.<em> At work we recently moved to Lotus Notes so I suppose I no longer send email at work; we&#8217;ve to  call them &#8216;notes&#8217; instead. I don&#8217;t have any stats for that. I would imagine given the complexity of reading <strike>emails</strike> notes with Lotus Notes </em><em>getting statistics would almost be impossible. </em></p>
+
+<p>Sent ~1400 messages (lyonanderson.com)<br/>Received ~6000 messages (lyonanderson.com)</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lecz28egyO1qawfwr.jpg"/></p>
+
+<p>(The lower graph includes previous years, but I thought it was interesting to see how my email traffic is increasing year on year).</p>
+
+<h2>SMS Usage</h2>
+
+<p>So I&#8217;ve sent and received what I think is quite a large number of text messages. However, speaking to the yoof I had to revise this opinion. Kiddies today send this kind of traffic on a daily basis. </p>
+
+<p>Sent: 3140 messages (35505 words)<br/>Received: 2965 message (42670 words) </p>
+
+<p>Note I include &#8216;x&#8217; as a word. It&#8217;s pronounced Kiss or Kiss Kiss.  A kiss at the end of a SMS can make all the difference. Especially when sending SMSs to your boss.  </p>
+
+<p>Without giving too much away, the following two graphics depict the kinds of words I send in my SMS messages. I have not included &#8216;x&#8217; in these pictures as no one wants to see a giant picture of an &#8216;x&#8217;.</p>
+
+<p>Prominent words in outgoing SMS messages:</p>
+
+<p><img src="http://media.tumblr.com/tumblr_leczettg1U1qawfwr.png"/></p>
+
+<p>Prominent words in incoming SMS messages:</p>
+
+<p><img src="http://media.tumblr.com/tumblr_leczg9j0Qr1qawfwr.png"/></p>
+
+<h2>Twitter</h2>
+
+<p>I posted 1021 twitter status updates.  I would have done a graphic for this too, but everyone seems to be doing that. </p>
+
+<h2>Evernote</h2>
+
+<p>I like <a title="Evernote" target="_blank" href="http://www.evernote.com">Evernote</a> a lot. I throw all kinds of stuff in there. From receipts, instructions manuals and menus, to my personal diary entries (more on that later).</p>
+
+<p>Notes create: 384</p>
+
+<h2>Foursqaure</h2>
+
+<p>I&#8217;ve not been using this as much as I wanted to. I think if more friends used it I would use it more. Still I like the idea and I think it&#8217;s going to go places in 2011. </p>
+
+<p>Checkins: 223</p>
+
+<h2>Running</h2>
+
+<p>The most physical of the numbers in this list. I&#8217;ve really got into running this year. I love it. It does not love me. My knees have been quite bad recently so I&#8217;ve had to cut down lots. I use the Nike+ system to monitor my runs. </p>
+
+<p>932.67 miles made of 146 runs.</p>
+
+<p>The graph below shows how the runs were spread out over 2010. I went a bit crazy in the summer.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lecztrWO5H1qawfwr.png"/></p>
+
+<h2>Music</h2>
+
+<p>I use Spotify for music. It&#8217;s worth £10 a month to have access to all that music. I use the iPhone client the most. I have all my Spotify clients scrobble to last.fm. Unfortunately, there is a big gap in the data for the beginning of the year. Sorry.</p>
+
+<p>Tracks listened to: 8580</p>
+
+<p>The graph below shows how the listening is spread out over the year. I&#8217;m not sure what the big spike is. I&#8217;ll look into that and get back to you.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_leczxaYYGe1qawfwr.png"/></p>
+
+<h2>Stackoverflow.com reputation</h2>
+
+<p>2010 saw me join stackoverflow.com. I like the site and had been using it as a spectator for a while. I decided to give something back by depositing my pearls of wisdom. As you can see from the graph I kind of got a little bored. I promise to be more active this year.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_led01oQPi31qawfwr.png"/></p>
+
+<h2>Web Search</h2>
+
+<p>Google can keep track of the web searches that you do. It&#8217;s quite scary, but looking back at the data can be interesting. I don&#8217;t have the tracking on all the machines I use for search, but the graphs below show the lion&#8217;s share. </p>
+
+<p><img src="http://media.tumblr.com/tumblr_led040IKbn1qawfwr.png"/></p>
+
+<h2>AppStore</h2>
+
+<p>I have purchased the following applications for my iPhone/iPad from the iTunes AppStore.</p>
+
+<blockquote>
+
+<p>The Cloud Wi-Fi Finder, Labyrinth, Tumblr, NYTimes, Toiluxe - central London edition, Let&#8217;s Golf!, WorkSnug London, OffMaps, SnowRemote, BlockChalk, AudioBoo, Distances, defriended, Digg, Chambers Dictionary of the English language, Vodafone Navigation, Chambers Thesaurus, Instapaper Pro, WhatsApp Messenger, Gangstar: West Coast Hustle, I Am T-Pain, Nike True City, Flickit Pro, Sleep Cycle alarm clock, WordCrasher, Friend Focus, AutoStitch Panorama, Metro UK, allRadio, HourFace, Babelshot (photo translator), CameraBag, Advanced Bubble Level, StoreRanks, VirginTrains, PositionApp‚Ñ¢, ToonPAINT, Quickoffice Connect, Happening, Grand Theft Auto: Chinatown Wars, myStarbucks UK, Pocket Informant LITE (Calendar, VLC Remote £0.00, Chomp., DriveSaver, WhatBus, ooTunes Radio - Recording and Alarm Clock!, Digital SLR Photography Toolkit For Dummies, iPlane - Leeds Bradford International Airport, Assassin&#8217;s Creed II: Multiplayer, The OscarsÆ, Zen Bound‚Ñ¢ Lite, NextBuses, MyBus, iSimples, Angry Birds, MicroCars, SpongeBob Diner Dash Lite, ScribbleLive, Opera Mini Web browser, We Rule, TrueHDR, Mapzen POI Collector, Plane Finder £0.00, Lonely Planet London City Guide, Lonely Planet Paris City Guide, Lonely Planet Istanbul City Guide, Lonely Planet Barcelona City Guide, Lonely Planet Amsterdam City Guide, Lonely Planet Rome City Guide, Lonely Planet Berlin City Guide, Lonely Planet Copenhagen City Guide, Lonely Planet Vienna City Guide, Lonely Planet Budapest City Guide, Lonely Planet Stockholm City Guide, Lonely Planet Munich City Guide, Lonely Planet Moscow City Guide, Vancouver Travel Guide - The Sights, mopho, iBooks, GoodReader for iPad, The Guardian Eyewitness, Evernote, Syncopy, Netflix, IMDb Movies &amp; TV, TweetDeck for iPad, ABC Player, AdobeÆ Ideas 1.0 for iPad, eBay for iPad, Numbers, Mocha VNC Lite, Granimator - The Wallpaper Creator, Molecules, Instapaper Pro, Feeddler RSS Reader for iPad, Urbanspoon for iPad, Marvel Comics, TIME Magazine, TIME May 10, USA TODAY for iPad, Backgrounds HD, NPR for iPad, Wikipanion for iPad, PCalc Lite Calculator, Yahoo! Entertainment, Simplenote, Dropbox, Twitterrific for iPad, BBC News, ArtStudio for iPad, AIM for iPad, FlickStackr, StreamToMe, Amazon Mobile, sobees for Facebook, Pro HDR, MacUser Magazine, N.O.V.A. - Near Orbit Vanguard Alliance HD, NDrive UK &amp; Ireland, Hipstamatic, WIRED Magazine, Pages, Air Video - Watch your videos anywhere!, GoodReader for iPad, Reeder for iPad, FatBooth, PhotoGrab, iMovie, SimCity‚Ñ¢, AgingBooth, Barcelona Metro 09, Eliminate:GunRange, Enigmo 2, Feathers Visage, You Gotta See This!, Camera+ ‚the ultimate photo app, ShutterSnitch, WolframAlpha, Nike+ GPS, Flight Control, Osmos, Plane Finder AR, The Secret of Monkey Island: Special Edition, Nigella Quick Collection, LogMeIn Ignition, Geometry Wars‚Ñ¢: Touch, Friendly - Facebook Browser, SABMobile, myNZB, .03 seconds Pro, traveline south &amp; east, TuneIn Radio, TuneIn Radio, Scanner Pro: scan multipage documents, ReaddleDocs (documents/attachments viewer and file manager), LEGO Harry Potter: Years 1-4, Momento (Diary/Journal), COMMAND &amp; CONQUER‚ RED ALERT‚ for iPad, SCRABBLE for iPad, SimCity Deluxe for iPad, TETRIS for iPad, TETRIS, ScrabbleÆ, RAGE HD, QI, The Incident</p>
+
+</blockquote>
+
+<h2>Diary Entries</h2>
+
+<p>I use evernote to keep a basic kind of diary. I have made 26 entries this year. Again, I could do with doing more this year.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/18/396659686/">396659686</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-18T00:00:00+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><img src="/tumblr_files/tumblr_ky1l2vEXT71qadjtqo1_400.jpg"/><br/><p>I don&#8217;t remember being asked prior to 3.1.3?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/21/346452159/">Comparing Input Methods</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-21T00:00:00+00:00" pubdate data-updated="true">Jan 21<span>st</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://www.gyford.com/phil/writing/2010/01/18/input.php">Comparing input methods</a><br/><p>I still know people who refuse to get the iPhone because of the keyboard. I think it&#8217;s just a matter of practise .</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/21/345748521/">Developer-to-Developer Distribution</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-21T00:00:00+00:00" pubdate data-updated="true">Jan 21<span>st</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://www.mobileorchard.com/developer-to-developer-iphone-app-distribution-without-ad-hoc-provisioning/">Developer-to-Developer distribution</a><br/><p>Been doing this for a while now.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/03/314852687/">My Top iPhone Applications of 2010</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-03T00:00:00+00:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I thought I&#8217;d share my favourite iPhone applications of 2010.</p>
+
+<ul><li><a href="http://itunes.apple.com/gb/app/byline/id284946773?mt=8">Byline</a> - A great RSS reader that works with your Google Reader account. I&#8217;ve tried loads of different iPhone RSS readers, but this has the best offline support of any of them IMHO.<br/><br/></li>
+
+<li><a href="http://itunes.apple.com/gb/app/tweetie-2/id333903271?mt=8">Tweetie 2</a> - Simply one of the best Twitter clients out there. I&#8217;d go further and say it&#8217;s one of the best iPhone application out there. Loren Brichter has made some great UI innovations my favourite being the pull down to refresh.<br/><br/></li>
+
+<li><a href="http://itunes.apple.com/gb/app/the-guardian/id340425655?mt=8">The Guardian</a> - There are two feature I really like about the Guardians&#8217;s app. First, the tagging and cross-linking of articles. Second, the download and read offline feature. There&#8217;s some great content on here and the galleries have some stunning pictures. A very minor gripe is that does not remember where you are when you quit. As far as first versions go, this is the best I&#8217;ve seen for a long time.<br/><br/></li>
+
+<li> <a href="http://itunes.apple.com/gb/app/syncopy/id347882966?mt=8">Syncopy</a> - This is a late addition - I&#8217;ve only been using it for a week or so, but I&#8217;ve been waiting for ages. Syncopy allows you to share your copy/cut/paste buffer across your Macs and iPhone. One of clinchers for me is that Syncopy keeps copies of your paste buffer items in the cloud.  You can be out and about and access your paste buffer history right on the iPhone. I know that&#8217;s probably not everyone&#8217;s cup of tea, but I find it quite useful - the paste buffer is an extension to my short term memory. A close second is <a href="http://itunes.apple.com/gb/app/id344614116?mt=8">Pastebot</a> which in some ways is more functional (it handles images) and looks stunning. However, to sync both the iPhone and Mac apps have to be running at the same time.<br/><br/></li>
+
+<li><a href="http://itunes.apple.com/gb/app/spotify/id324684580?mt=8">Spotify</a> - I cancelled my Napster subscription the instant this application came out. While it&#8217;s not one of the best iPhone applications yet, it is amazing to have access to all that music when you&#8217;re out and about. The offline capabilities are the real game changer though. It&#8217;s not perfect and I would like to see more control over playlists, more granular download/offline control and a homescreen like on the desktop version. <i>I have to admit I do cheat a bit here and do use Backgrounder to allow me to play music while using other applications</i>.<br/><br/></li>
+
+<li><a href="http://itunes.apple.com/gb/app/evernote/id281796108?mt=8">Evernote</a> - I&#8217;ve been using Evernote since it was in beta and I love it! What really makes it for me is the OCR capabilities. I can scan or photograph anything and be able to search it at a later date. What distinguishes it from traditional OCR is that Evernote maintains a set of candidate words for each word in the image, thus improving the search chances. I now have over 600 notes which I can search and read wherever I am.  As with all these kinds of services it really comes down to how you use it. I now scan most letters, business cards and other random stuff. The beauty is that I just chuck it all in - I don&#8217;t need to file it.  As a bonus to premium customers, they just added downloading and offline search in the iPhone app.<br/><br/></li>
+
+<li><a href="http://itunes.apple.com/gb/app/remail/id324619399?mt=8">reMail</a> - Let&#8217;s you store your entire email account offline and search it.  It was great that Apple added search to built-in mail app, but it does not search the contents of emails. Being a child of Google I use my mailbox as a giant store of useful things and need to be able to search it. reMail let&#8217;s me do this and offline too. You can have multiple accounts (IMAP and GMail) and you can select which folders in those accounts are stored offline. The only downside is that you have to run the app periodically to let it download the mail - they do provide a notification services to help your remember.</li>
+
+</ul><p>A few other notable apps include <a href="http://itunes.apple.com/gb/app/dropbox/id327630330?mt=8">DropBox</a>, <a href="http://itunes.apple.com/gb/app/facebook/id284882215?mt=8">Facebook</a>, <a href="http://itunes.apple.com/gb/app/toodledo-to-do-list/id292755387?mt=8">Toodledo</a>, <a href="http://itunes.apple.com/gb/app/movies/id284235722?mt=8">Movies</a> and <a href="http://itunes.apple.com/gb/app/istat-sys-monitoring-battery/id303034517?mt=8">iStat</a>. If there was a theme to last year&#8217;s applications it would be to have access to, my ever growing, data in the cloud  wherever I am.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -116,6 +448,22 @@
     
       <li class="post">
         <a href="/blog/2012/09/23/iphone-battery-cycle-count/">iPhone Battery Cycle Count</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/09/2670466085/">You&#8217;re asking for the wrong thing. When pull should be push.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/01/2557330270/">My Year in Numbers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/02/18/396659686/">396659686</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/01/21/346452159/">Comparing input methods</a>
       </li>
     
   </ul>
@@ -140,6 +488,15 @@
   
 
 
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 

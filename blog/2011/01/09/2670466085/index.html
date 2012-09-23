@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>You're asking for the wrong thing. When pull should be push. - Musings of LyonAnderson</title>
+  <meta name="author" content="Christopher Lyon Anderson">
+
+  
+  <meta name="description" content="There was a great discussion on Radio 4 last week about freeing up National Rail Enquires (NRE) departure board data for developers to use. There &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lyonanderson.github.com/blog/2011/01/09/2670466085/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Musings of LyonAnderson" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Musings of LyonAnderson</a></h1>
+  
+    <h2>Stuff I Find Interesting</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lyonanderson.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">You're Asking for the Wrong Thing. When Pull Should Be Push.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-09T00:00:00+00:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There was a great <a title="discussion" href="http://www.bbc.co.uk/programmes/b00x7c36">discussion</a> on Radio 4 last week about freeing up National Rail Enquires (NRE) departure board data for developers to use. There were some great points made by both sides. But the whole thing was quite black and white and didn’t really go into the more delicate and interesting issues.  I often find in these discussions that people conflate a feed being publicly available and having permission to use that feed. They also conflate a feed with static data. Nonetheless, it&#8217;s great to have these discussions out in the open in a civilised and constructive manner.</p>
+
+<p>First, I&#8217;d like to make my background clear. In 2008 I worked for a company called Kizoom. Kizoom had been creating mobile applications, mobile websites and websites with train information for nearly 10 years. We&#8217;d had a long standing license with NRE to do this. In November 2008 I released MyRail Lite to the Apple AppStore. It displayed departure boards and calling patterns for UK trains. It was a moderate success and many people liked it. It was free too. We removed the application from the store in December 2008. I don&#8217;t want to go into the details of that here. It&#8217;s not really relevant to this discussion. However, I learnt many things from the episode. I learnt how to make iPhone applications. I learnt that business can be very personal. Personal in terms of making a connection with customers. Personal in terms of business relationships; both good and bad ones. MyRail Lite opened many doors and not long after I got to work on thetrainline&#8217;s iPhone application. Something I still do today. So on balance it was a great thing. It heartens me today that people still talk about it.</p>
+
+<p>So, back to the National Rail Enquires data. To be honest, departure boards are not particularly interesting and the scope for doing exciting things is a little limited. It almost feels that once you&#8217;ve seen one departure board app, you&#8217;ve seen them all. [That&#8217;s a bit unfair, as the same does not seem to be true of Twitter clients]. I&#8217;m not saying you can&#8217;t do interesting things with departure board data, just that there is a far more exciting feed available.  As you may or may not be aware there is another way that NRE could give the data out to developers. Instead of the departure board, or pull feed as I shall call it, there is also a push feed. The push feed is like a fire hose (not sure what this means?) of train movements. As each train moves over sensors, periodically placed along the tracks, an event is generated (For more information see <a title="here" href="http://www.rail-reg.gov.uk/upload/pdf/rtti-decision-011209.pdf">here</a> [Page 9]). As you can imagine there are quite a lot of train movements. At Kizoom we saw the value of the push feed and built a really cool alerting engine with it. Internally we called it Clarence. On the outside we called it the Travel Angel. We could tell you when your train journey was going to be delayed via an SMS. We could even tell you when to get ready to change trains. We could do this because we knew where all the trains were. </p>
+
+<p>Another more subtle advantage of the push feed is that it gives NRE better load independence with respect to the number of apps in the wild. Each app developer would be given a single push feed connection. It is then your job as a developer to handle the transformation of the feed into interesting information and scale appropriately. So if you want to build a departure board feed then you&#8217;ll have to handle the transformations and scalability yourself. NRE are protected as each developer only gets one push feed connection. With the current pull feed, each user of an application is making a connection to NRE&#8217;s servers.</p>
+
+<p>Yes, it will be harder to work with. Yes, you won&#8217;t be able to simply plug your app into the feed and spit the data out. Yes, you&#8217;ll have to think about how you&#8217;re going to scale. But the rewards could be great. You could do things like infer problems on the lines, keep historical data and make pretty graphs. You could even create an alerting engine. You could analyse what happens to trains when the weather is bad. Maybe there are new ways to help commuters in these situations? Is it really helpful to tell people the next train is in 95 minutes from Waterloo? What does that really mean?</p>
+
+<p>So to summarise, it&#8217;s great that NRE are giving out licences to the departure board feed. But what I&#8217;d really like to see is the push feed opened up. Because I believe that with the push feed we&#8217;ll really see what can be done with this data. Let&#8217;s aim higher and look beyond the departure board.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Christopher Lyon Anderson</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-09T00:00:00+00:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2011/01/09/2670466085/" data-via="" data-counturl="http://lyonanderson.github.com/blog/2011/01/09/2670466085/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/01/01/2557330270/" title="Previous Post: My Year in Numbers">&laquo; My Year in Numbers</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/09/23/iphone-battery-cycle-count/" title="Next Post: iPhone Battery Cycle Count">iPhone Battery Cycle Count &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/23/iphone-battery-cycle-count/">iPhone Battery Cycle Count</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/09/2670466085/">You're asking for the wrong thing. When pull should be push.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/01/2557330270/">My Year in Numbers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/02/18/396659686/">396659686</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/01/21/346452159/">Comparing input methods</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Christopher Lyon Anderson -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
