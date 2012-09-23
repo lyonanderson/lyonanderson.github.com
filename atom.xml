@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-09-23T21:38:55+01:00</updated>
+  <updated>2012-09-23T21:44:02+01:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iPhone Battery Cycle Count]]></title>
+    <link href="http://lyonanderson.github.com/blog/2012/09/23/iphone-battery-cycle-count/"/>
+    <updated>2012-09-23T21:43:00+01:00</updated>
+    <id>http://lyonanderson.github.com/blog/2012/09/23/iphone-battery-cycle-count</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
