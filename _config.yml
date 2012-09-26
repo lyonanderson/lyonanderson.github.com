@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://lyonanderson.github.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Musings of LyonAnderson
+subtitle: Stuff I Find Interesting
+author: Christopher Lyon Anderson
 simple_search: http://google.com/search
 description:
 
@@ -58,13 +58,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.ht
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: 
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: ishra
 twitter_tweet_count: 4
 twitter_show_replies: false
 twitter_follow_button: true
@@ -93,7 +93,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-35036956-1
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
