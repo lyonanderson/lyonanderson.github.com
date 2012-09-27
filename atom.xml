@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-09-27T09:40:01+01:00</updated>
+  <updated>2012-09-27T09:52:47+01:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Zeebox Launches in the US]]></title>
+    <link href="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/"/>
+    <updated>2012-09-27T09:40:00+01:00</updated>
+    <id>http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us</id>
+    <content type="html"><![CDATA[<p>After many months of hard work Zeebox has finally launched in the US. This coincides with a new UK release too. We&#8217;ve added a load of great new features including a What&#8217;s Hot section, an activity feed to see what you&#8217;re friends have been doing, and a great new commenting system. Electric Labs has been working with Zeebox since July last year - how time flies! You can grab the UK version <a href="http://itunes.apple.com/us/app/zeebox/id454689266?ls=1&amp;mt=8">here</a> and the US version <a href="http://itunes.apple.com/us/app/zeebox/id513267737?ls=1&amp;mt=8">here</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Facebook Hack 2012 London Winners]]></title>
