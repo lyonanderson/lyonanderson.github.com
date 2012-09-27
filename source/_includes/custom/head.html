@@ -1,3 +1,14 @@
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+{% if site.facebook_appid %}
+<meta property="fb:app_id" content="{{ site.facebook_appid }}" />
+  {% if page.title %}
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:image" content="{{ site.url }}/images/avatar.png" />
+  <meta property="og:author" content="http://lyonanderson.org />
+  {% endif %}
+{% endif %}
