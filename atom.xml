@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-09-27T09:52:47+01:00</updated>
+  <updated>2012-09-27T14:32:04+01:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS6 Detailed Battery Info]]></title>
+    <link href="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info/"/>
+    <updated>2012-09-27T11:32:00+01:00</updated>
+    <id>http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info</id>
+    <content type="html"><![CDATA[<p>I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&#8217;ve put together a quick and dirty app which displays most of the interesting stuff. You can get it on github <a href="https://github.com/lyonanderson/BatteryInfo">here</a>. Being ever so fashionable I only support iOS6. Plus, it doesn&#8217;t work on iOS5!</p>
+
+<p><img src="http://lyonanderson.github.com/images/IMG_4055.PNG" alt="Screenshot" /></p>
+
+<!-- more -->
+
+
+<p>Delving deeper, there is a class called OSDBattery which exposes battery metrics including the battery cycle count and serial number.  Looking at the <a href="https://github.com/nst/iOS-Runtime-Headers/">header dump</a> of iOS6 shows OSDBattery in the FactoryDiags framework. However, on device you won&#8217;t find this framework. Instead, you need to load the GAIA framework to use OSDBattery. So for example, to get the battery cycle count:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">NSBundle</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSBundle</span> <span class="nl">bundleWithPath:</span><span class="s">@&quot;/System/Library/PrivateFrameworks/GAIA.framework&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="kt">BOOL</span> <span class="n">success</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="n">load</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">success</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">Class</span> <span class="n">OSDBattery</span> <span class="o">=</span> <span class="n">NSClassFromString</span><span class="p">(</span><span class="s">@&quot;OSDBattery&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="kt">id</span> <span class="n">powerController</span> <span class="o">=</span> <span class="p">[</span><span class="n">OSDBattery</span> <span class="n">sharedInstance</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Battery Cycle Count %d&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">powerController</span> <span class="n">_getBatteryCycleCount</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It goes without saying that you can&#8217;t submit an app using this code! It&#8217;s a private framework. Don&#8217;t be an idiot.  I&#8217;m not sure how useful all of this is. I&#8217;d quite like to run the app on a refurbished device to see what is says. I&#8217;m also not clear as to where exactly the count is stored i.e. in the battery or on device. Maybe the <a href="http://www.ifixit.com">iFixit</a> guys can swap batteries in a device and let me know?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Zeebox Launches in the US]]></title>
@@ -29,7 +66,7 @@
     <id>http://lyonanderson.github.com/blog/2012/09/26/facebook-hack-2012-london-winners</id>
     <content type="html"><![CDATA[<p>Last Friday I went to the Facebook London Hack 2012 with <a href="https://twitter.com/mattjgalloway">Matt</a>, <a href="https://twitter.com/michaelslater">Michael</a>, <a href="https://twitter.com/netproteus">Will</a> and <a href="https://twitter.com/stephenoldham">Steve</a>. Matt&#8217;s written a nice explanation of what we did on his <a href="http://www.galloway.me.uk/2012/09/facebook-world-hack-london-winners/">blog</a>. In a nutshell we made a Silent Disco Flashmob app called Flash Dance. We had a great time, met lots of cool people and worked in a camper van tent. Even better, we won best overall hack!</p>
 
-<p><img src="images/IMG_4032.JPG" alt="" /></p>
+<p><img src="http://lyonanderson.github.com/images/IMG_4032.JPG" alt="" /></p>
 ]]></content>
   </entry>
   
