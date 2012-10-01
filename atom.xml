@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-09-27T14:36:25+01:00</updated>
+  <updated>2012-10-01T23:04:33+01:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[TypeScript]]></title>
+    <link href="http://lyonanderson.github.com/blog/2012/10/01/typescript/"/>
+    <updated>2012-10-01T22:14:00+01:00</updated>
+    <id>http://lyonanderson.github.com/blog/2012/10/01/typescript</id>
+    <content type="html"><![CDATA[<p>Microsoft have released a typed superset of JavaScript called <a href="http://www.typescriptlang.org">TypeScript</a>. I spent a sizable portion of my life looking at types and JavaScript, in particular <a href="http://pubs.doc.ic.ac.uk/authors/cla97/">Inferring types for JavaScript programmes</a>. I still find the area interesting, and it&#8217;s nice to see this new and exciting work. I wonder if TypeScript has a sound type system? I see already that someone on Twitter has <a href="https://twitter.com/puffnfresh/statuses/252816990782230528">pointed out</a> that arrays are mutable and covariant:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">class</span> <span class="nx">B</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">foo</span> <span class="p">()</span> <span class="p">{</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">class</span> <span class="nx">C</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span><span class="o">:</span> <span class="nx">B</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="k">new</span> <span class="nx">B</span><span class="p">()];</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">a</span><span class="o">:</span> <span class="nx">A</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">boom</span><span class="o">:</span> <span class="nx">B</span> <span class="o">=</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'><span class="nx">boom</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>  <span class="c1">// boom points to an instance of C which has no foo method!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you run the above you&#8217;ll get an error stating that Object #&lt;C> has no method &#8216;foo&#8217;. The Java type system also has covariant arrays, but would prevent the assignment on line 11 at runtime:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'>         <span class="n">B</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+</span><span class='line'>         <span class="n">A</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+</span><span class='line'>         <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="o">();</span> <span class="c1">// Runtime exception: Exception in thread &quot;main&quot; java.lang.ArrayStoreException: C</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">A</span> <span class="o">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">C</span> <span class="kd">extends</span> <span class="n">A</span> <span class="o">{</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS6 Detailed Battery Info]]></title>
