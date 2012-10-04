@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-10-04T17:59:45+01:00</updated>
+  <updated>2012-10-04T18:00:33+01:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -54,7 +54,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>defaults delete com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel</span></code></pre></td></tr></table></div></figure>
 
 
-<p>If someone can shed light on why this happens please get in touch.</p>
+<p>If someone can shed light on why this happens, please get in touch.</p>
 ]]></content>
   </entry>
   
