@@ -113,7 +113,12 @@
   </header>
 
 
-<div class="entry-content"><p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did tried an old trick. First, I entered the following into terminal and restarted Xcode.</p>
+<div class="entry-content"><p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did tried an old trick.</p>
+
+<!-- more -->
+
+
+<p>First, I entered the following into terminal and restarted Xcode.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>defaults write com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel 3</span></code></pre></td></tr></table></div></figure>
