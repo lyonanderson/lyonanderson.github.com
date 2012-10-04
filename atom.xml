@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-10-01T23:04:33+01:00</updated>
+  <updated>2012-10-04T17:56:07+01:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xcode can't find headers annoyance]]></title>
+    <link href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/"/>
+    <updated>2012-10-04T15:37:00+01:00</updated>
+    <id>http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance</id>
+    <content type="html"><![CDATA[<p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did tried an old trick. First, I entered the following into terminal and restarted Xcode.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>defaults write com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel 3</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fire up console app and delete the derived data for your project. Console will become really shouty with stuff like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.299 Xcode[70288]:  IDEIndexingClangInvocation: ---- X/Redacted.m</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is normal. However, you&#8217;ll probably find lines like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.321 Xcode[70288]:  IDEIndexingClangInvocation: [diagnostic]: Redacted.h:9:9: fatal error: 'Refacted.h' file not found
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is not normal. You&#8217;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&#8217;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sed -n "s/.*fatal error: '\(.*\)' file not found.*/\1/p" xcodelog.txt  | sort | uniq</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should now have a long list of files. Here is the boring part. You&#8217;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&#8217;re done turn off the logging and restart Xcode:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>defaults delete com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If someone can shed light on why this happens please get in touch.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TypeScript]]></title>

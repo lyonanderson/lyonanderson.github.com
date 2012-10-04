@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zeebox Launches in the US - Musings of LyonAnderson</title>
+  <title>Xcode can't find headers annoyance - Musings of LyonAnderson</title>
   <meta name="author" content="Christopher Lyon Anderson">
 
   
-  <meta name="description" content="After many months of hard work Zeebox has finally launched in the US. This coincides with a new UK release too. We&#8217;ve added a load of great new &hellip;">
+  <meta name="description" content="Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/">
+  <link rel="canonical" href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -32,9 +32,9 @@
 
 <meta property="fb:app_id" content="465715510117590" />
   
-  <meta property="og:title" content="Zeebox Launches in the US" />
+  <meta property="og:title" content="Xcode can't find headers annoyance" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/" />
+  <meta property="og:url" content="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" />
   <meta property="og:image" content="http://lyonanderson.github.com/images/avatar.png" />
   <meta property="og:author" content="http://lyonanderson.org />
   
@@ -90,7 +90,7 @@
   
   <header>
     
-      <h1 class="entry-title">Zeebox Launches in the US</h1>
+      <h1 class="entry-title">Xcode Can't Find Headers Annoyance</h1>
     
     
       <p class="meta">
@@ -106,14 +106,45 @@
   
 
 
-<time datetime="2012-09-27T09:40:00+01:00" pubdate data-updated="true">Sep 27<span>th</span>, 2012</time>
+<time datetime="2012-10-04T15:37:00+01:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>After many months of hard work Zeebox has finally launched in the US. This coincides with a new UK release too. We&#8217;ve added a load of great new features including a What&#8217;s Hot section, an activity feed to see what you&#8217;re friends have been doing, and a great new commenting system. Electric Labs has been working with Zeebox since July last year - how time flies! You can grab the UK version <a href="http://itunes.apple.com/us/app/zeebox/id454689266?ls=1&amp;mt=8">here</a> and the US version <a href="http://itunes.apple.com/us/app/zeebox/id513267737?ls=1&amp;mt=8">here</a>.</p>
+<div class="entry-content"><p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did tried an old trick. First, I entered the following into terminal and restarted Xcode.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>defaults write com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel 3</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fire up console app and delete the derived data for your project. Console will become really shouty with stuff like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.299 Xcode[70288]:  IDEIndexingClangInvocation: ---- X/Redacted.m</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is normal. However, you&#8217;ll probably find lines like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.321 Xcode[70288]:  IDEIndexingClangInvocation: [diagnostic]: Redacted.h:9:9: fatal error: 'Refacted.h' file not found
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is not normal. You&#8217;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&#8217;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sed -n "s/.*fatal error: '\(.*\)' file not found.*/\1/p" xcodelog.txt  | sort | uniq</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should now have a long list of files. Here is the boring part. You&#8217;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&#8217;re done turn off the logging and restart Xcode:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>defaults delete com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If someone can shed light on why this happens please get in touch.</p>
 </div>
 
 
@@ -136,21 +167,15 @@
   
 
 
-<time datetime="2012-09-27T09:40:00+01:00" pubdate data-updated="true">Sep 27<span>th</span>, 2012</time>
+<time datetime="2012-10-04T15:37:00+01:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/zeebox/'>zeebox</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/" data-via="ishra" data-counturl="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" data-via="ishra" data-counturl="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" >Tweet</a>
   
   
   
@@ -161,10 +186,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/09/26/facebook-hack-2012-london-winners/" title="Previous Post: Facebook Hack 2012 London Winners">&laquo; Facebook Hack 2012 London Winners</a>
+        <a class="basic-alignment left" href="/blog/2012/10/01/typescript/" title="Previous Post: TypeScript">&laquo; TypeScript</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/09/27/ios6-detailed-battery-info/" title="Next Post: iOS6 Detailed Battery Info">iOS6 Detailed Battery Info &raquo;</a>
       
     </p>
   </footer>
@@ -175,7 +198,7 @@
     <h1>Comments</h1>
     <div id="facebook_comments" aria-live="polite"><noscript>Please enable JavaScript to view the comments powered by Facebook</noscript>
 <div class="fb-comments"
-     data-href="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/"
+     data-href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/"
      data-num-posts="10"
      data-width="600"
      data-colorscheme="light"></div>
