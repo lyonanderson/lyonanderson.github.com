@@ -1,24 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Musings of LyonAnderson]]></title>
-  <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
-  <link href="http://lyonanderson.github.com/"/>
-  <updated>2012-10-08T19:43:33+01:00</updated>
-  <id>http://lyonanderson.github.com/</id>
-  <author>
-    <name><![CDATA[Christopher Lyon Anderson]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>(Failing to) Make iOS6 Remote View Controllers - Musings of LyonAnderson</title>
+  <meta name="author" content="Christopher Lyon Anderson">
 
   
-  <entry>
-    <title type="html"><![CDATA[(Failing to) Make iOS6 Remote View Controllers]]></title>
-    <link href="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/"/>
-    <updated>2012-10-08T14:47:00+01:00</updated>
-    <id>http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve been following with great interest Ole Begemann&#8217;s <a href="http://oleb.net/blog/2012/10/remote-view-controllers-in-ios-6/">research</a> into remote view controllers in iOS6. I wanted to look at the problem from the other end. I want to make my own remote view controllers. Clearly, we&#8217;ll be using private APIs and therefore, none of this can make it into your apps for the store. I&#8217;ll say up front I was not able to get this working, but I&#8217;ve found some interesting things out.</p>
+  <meta name="description" content="I&#8217;ve been following with great interest Ole Begemann&#8217;s research into remote view controllers in iOS6. I wanted to look at the problem &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Musings of LyonAnderson" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+<meta property="fb:app_id" content="465715510117590" />
+  
+  <meta property="og:title" content="(Failing to) Make iOS6 Remote View Controllers" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/" />
+  <meta property="og:image" content="http://lyonanderson.github.com/images/avatar.png" />
+  <meta property="og:author" content="http://lyonanderson.org />
+  
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35036956-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Musings of LyonAnderson</a></h1>
+  
+    <h2>Stuff I Find Interesting</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lyonanderson.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">(Failing to) Make iOS6 Remote View Controllers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-08T14:47:00+01:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been following with great interest Ole Begemann&#8217;s <a href="http://oleb.net/blog/2012/10/remote-view-controllers-in-ios-6/">research</a> into remote view controllers in iOS6. I wanted to look at the problem from the other end. I want to make my own remote view controllers. Clearly, we&#8217;ll be using private APIs and therefore, none of this can make it into your apps for the store. I&#8217;ll say up front I was not able to get this working, but I&#8217;ve found some interesting things out.</p>
 
 <!-- more -->
 
@@ -58,7 +153,7 @@
 
 <p>This will bring up the standard mail composer. All good. Now let&#8217;s look at making our own service.  As Ole pointed out, Apple provide hidden applications/services (via SBAppTags in the Info.plist) which are started when a remote view controller is needed. So if you run the above code you&#8217;ll see a process called MailCompositionService is started (if it&#8217;s not already there). If we look inside the app bundle for MailCompositionService you&#8217;ll see some interesting keys:</p>
 
-<p><img src="http://lyonanderson.github.com/images/mailComposerInfoList.png" alt="" /></p>
+<p><img src="/images/mailComposerInfoList.png" alt="" /></p>
 
 <p>It would appear as though SBMachServices defines the name of the XPC service we are offering. The budle indetifier matches the name used in the call to [UIRemoteViewController requestViewController:connectionHandler:].  We can now create an application of our own and add these keys to our Info.plist. I created an app called TestRemote and used com.electriclabs.TestRemote as the bundle name.  The app has nothing but a blank view to start with. If you start the app and look in the system console you&#8217;ll see this error:</p>
 
@@ -326,300 +421,159 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
 
 
 <p>I&#8217;d love to get this working.</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Xcode can't find headers annoyance]]></title>
-    <link href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/"/>
-    <updated>2012-10-04T15:37:00+01:00</updated>
-    <id>http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance</id>
-    <content type="html"><![CDATA[<p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did try an old trick.</p>
 
-<!-- more -->
+<span class="byline author vcard">Posted by <span class="fn">Christopher Lyon Anderson</span></span>
+
+      
 
 
-<p>First, I entered the following into terminal and restarted Xcode.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>defaults write com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel 3</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Fire up console app and delete the derived data for your project. Console will become really shouty with stuff like:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.299 Xcode[70288]:  IDEIndexingClangInvocation: ---- X/Redacted.m</span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is normal. However, you&#8217;ll probably find lines like these:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.321 Xcode[70288]:  IDEIndexingClangInvocation: [diagnostic]: Redacted.h:9:9: fatal error: 'Refacted.h' file not found
-</span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is not normal. You&#8217;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&#8217;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sed -n "s/.*fatal error: '\(.*\)' file not found.*/\1/p" xcodelog.txt  | sort | uniq</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You should now have a long list of files. Here is the boring part. You&#8217;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&#8217;re done turn off the logging and restart Xcode:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>defaults delete com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If someone can shed light on why this happens, please get in touch.</p>
-]]></content>
-  </entry>
   
-  <entry>
-    <title type="html"><![CDATA[TypeScript]]></title>
-    <link href="http://lyonanderson.github.com/blog/2012/10/01/typescript/"/>
-    <updated>2012-10-01T22:14:00+01:00</updated>
-    <id>http://lyonanderson.github.com/blog/2012/10/01/typescript</id>
-    <content type="html"><![CDATA[<p>Microsoft have released a typed superset of JavaScript called <a href="http://www.typescriptlang.org">TypeScript</a>. I spent a sizable portion of my life looking at types and JavaScript, in particular <a href="http://pubs.doc.ic.ac.uk/authors/cla97/">Inferring types for JavaScript programmes</a>. I still find the area interesting, and it&#8217;s nice to see this new and exciting work. I wonder if TypeScript has a sound type system? I see already that someone on Twitter has <a href="https://twitter.com/puffnfresh/statuses/252816990782230528">pointed out</a> that arrays are mutable and covariant:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kr">class</span> <span class="nx">B</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">foo</span> <span class="p">()</span> <span class="p">{</span>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kr">class</span> <span class="nx">C</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">b</span><span class="o">:</span> <span class="nx">B</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="k">new</span> <span class="nx">B</span><span class="p">()];</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">a</span><span class="o">:</span> <span class="nx">A</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
-</span><span class='line'><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">boom</span><span class="o">:</span> <span class="nx">B</span> <span class="o">=</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span><span class='line'><span class="nx">boom</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>  <span class="c1">// boom points to an instance of C which has no foo method!</span>
-</span></code></pre></td></tr></table></div></figure>
 
 
-<p>When you run the above you&#8217;ll get an error stating that Object #&lt;C> has no method &#8216;foo&#8217;. The Java type system also has covariant arrays, but would prevent the assignment on line 11 at runtime:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-</span><span class='line'>         <span class="n">B</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
-</span><span class='line'>         <span class="n">A</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-</span><span class='line'>         <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="o">();</span> <span class="c1">// Runtime exception: Exception in thread &quot;main&quot; java.lang.ArrayStoreException: C</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">A</span> <span class="o">{}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">class</span> <span class="nc">C</span> <span class="kd">extends</span> <span class="n">A</span> <span class="o">{</span> <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<time datetime="2012-10-08T14:47:00+01:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time>
+      
 
 
-
-]]></content>
-  </entry>
+    </p>
+    
+      <div class="sharing">
   
-  <entry>
-    <title type="html"><![CDATA[iOS6 Detailed Battery Info]]></title>
-    <link href="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info/"/>
-    <updated>2012-09-27T11:32:00+01:00</updated>
-    <id>http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info</id>
-    <content type="html"><![CDATA[<p>I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&#8217;ve put together a quick and dirty app which displays most of the interesting stuff. You can get it on github <a href="https://github.com/lyonanderson/BatteryInfo">here</a>. Being ever so fashionable I only support iOS6. Plus, it doesn&#8217;t work on iOS5!</p>
-
-<p><img src="http://lyonanderson.github.com/images/IMG_4055.png" alt="Screenshot" /></p>
-
-<!-- more -->
-
-
-<p>Delving deeper, there is a class called OSDBattery which exposes battery metrics including the battery cycle count and serial number.  Looking at the <a href="https://github.com/nst/iOS-Runtime-Headers/">header dump</a> of iOS6 shows OSDBattery in the FactoryDiags framework. However, on device you won&#8217;t find this framework. Instead, you need to load the GAIA framework to use OSDBattery. So for example, to get the battery cycle count:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="n">NSBundle</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSBundle</span> <span class="nl">bundleWithPath:</span><span class="s">@&quot;/System/Library/PrivateFrameworks/GAIA.framework&quot;</span><span class="p">];</span>
-</span><span class='line'><span class="kt">BOOL</span> <span class="n">success</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="n">load</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">success</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">Class</span> <span class="n">OSDBattery</span> <span class="o">=</span> <span class="n">NSClassFromString</span><span class="p">(</span><span class="s">@&quot;OSDBattery&quot;</span><span class="p">);</span>
-</span><span class='line'>        <span class="kt">id</span> <span class="n">powerController</span> <span class="o">=</span> <span class="p">[</span><span class="n">OSDBattery</span> <span class="n">sharedInstance</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Battery Cycle Count %d&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">powerController</span> <span class="n">_getBatteryCycleCount</span><span class="p">]);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It goes without saying that you can&#8217;t submit an app using this code! It&#8217;s a private framework. Don&#8217;t be an idiot.  I&#8217;m not sure how useful all of this is. I&#8217;d quite like to run the app on a refurbished device to see what is says. I&#8217;m also not clear as to where exactly the count is stored i.e. in the battery or on device. Maybe the <a href="http://www.ifixit.com">iFixit</a> guys can swap batteries in a device and let me know?</p>
-]]></content>
-  </entry>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/" data-via="ishra" data-counturl="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/" >Tweet</a>
   
-  <entry>
-    <title type="html"><![CDATA[Zeebox Launches in the US]]></title>
-    <link href="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/"/>
-    <updated>2012-09-27T09:40:00+01:00</updated>
-    <id>http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us</id>
-    <content type="html"><![CDATA[<p>After many months of hard work Zeebox has finally launched in the US. This coincides with a new UK release too. We&#8217;ve added a load of great new features including a What&#8217;s Hot section, an activity feed to see what you&#8217;re friends have been doing, and a great new commenting system. Electric Labs has been working with Zeebox since July last year - how time flies! You can grab the UK version <a href="http://itunes.apple.com/us/app/zeebox/id454689266?ls=1&amp;mt=8">here</a> and the US version <a href="http://itunes.apple.com/us/app/zeebox/id513267737?ls=1&amp;mt=8">here</a>.</p>
-]]></content>
-  </entry>
   
-  <entry>
-    <title type="html"><![CDATA[Facebook Hack 2012 London Winners]]></title>
-    <link href="http://lyonanderson.github.com/blog/2012/09/26/facebook-hack-2012-london-winners/"/>
-    <updated>2012-09-26T21:40:00+01:00</updated>
-    <id>http://lyonanderson.github.com/blog/2012/09/26/facebook-hack-2012-london-winners</id>
-    <content type="html"><![CDATA[<p>Last Friday I went to the Facebook London Hack 2012 with <a href="https://twitter.com/mattjgalloway">Matt</a>, <a href="https://twitter.com/michaelslater">Michael</a>, <a href="https://twitter.com/netproteus">Will</a> and <a href="https://twitter.com/stephenoldham">Steve</a>. Matt&#8217;s written a nice explanation of what we did on his <a href="http://www.galloway.me.uk/2012/09/facebook-world-hack-london-winners/">blog</a>. In a nutshell we made a Silent Disco Flashmob app called Flash Dance. We had a great time, met lots of cool people and worked in a camper van tent. Even better, we won best overall hack!</p>
-
-<p><img src="http://lyonanderson.github.com/images/IMG_4032.JPG" alt="" /></p>
-]]></content>
-  </entry>
   
-  <entry>
-    <title type="html"><![CDATA[You're asking for the wrong thing. When pull should be push.]]></title>
-    <link href="http://lyonanderson.github.com/blog/2011/01/09/2670466085/"/>
-    <updated>2011-01-09T00:00:00+00:00</updated>
-    <id>http://lyonanderson.github.com/blog/2011/01/09/2670466085</id>
-    <content type="html"><![CDATA[<p>There was a great <a title="discussion" href="http://www.bbc.co.uk/programmes/b00x7c36">discussion</a> on Radio 4 last week about freeing up National Rail Enquires (NRE) departure board data for developers to use. There were some great points made by both sides. But the whole thing was quite black and white and didn’t really go into the more delicate and interesting issues.  I often find in these discussions that people conflate a feed being publicly available and having permission to use that feed. They also conflate a feed with static data. Nonetheless, it&#8217;s great to have these discussions out in the open in a civilised and constructive manner.</p>
-
-<!-- more -->
-
-<p>First, I&#8217;d like to make my background clear. In 2008 I worked for a company called Kizoom. Kizoom had been creating mobile applications, mobile websites and websites with train information for nearly 10 years. We&#8217;d had a long standing license with NRE to do this. In November 2008 I released MyRail Lite to the Apple AppStore. It displayed departure boards and calling patterns for UK trains. It was a moderate success and many people liked it. It was free too. We removed the application from the store in December 2008. I don&#8217;t want to go into the details of that here. It&#8217;s not really relevant to this discussion. However, I learnt many things from the episode. I learnt how to make iPhone applications. I learnt that business can be very personal. Personal in terms of making a connection with customers. Personal in terms of business relationships; both good and bad ones. MyRail Lite opened many doors and not long after I got to work on thetrainline&#8217;s iPhone application. Something I still do today. So on balance it was a great thing. It heartens me today that people still talk about it.</p>
-
-<p>So, back to the National Rail Enquires data. To be honest, departure boards are not particularly interesting and the scope for doing exciting things is a little limited. It almost feels that once you&#8217;ve seen one departure board app, you&#8217;ve seen them all. [That&#8217;s a bit unfair, as the same does not seem to be true of Twitter clients]. I&#8217;m not saying you can&#8217;t do interesting things with departure board data, just that there is a far more exciting feed available.  As you may or may not be aware there is another way that NRE could give the data out to developers. Instead of the departure board, or pull feed as I shall call it, there is also a push feed. The push feed is like a fire hose (not sure what this means?) of train movements. As each train moves over sensors, periodically placed along the tracks, an event is generated (For more information see <a title="here" href="http://www.rail-reg.gov.uk/upload/pdf/rtti-decision-011209.pdf">here</a> [Page 9]). As you can imagine there are quite a lot of train movements. At Kizoom we saw the value of the push feed and built a really cool alerting engine with it. Internally we called it Clarence. On the outside we called it the Travel Angel. We could tell you when your train journey was going to be delayed via an SMS. We could even tell you when to get ready to change trains. We could do this because we knew where all the trains were. </p>
-
-<p>Another more subtle advantage of the push feed is that it gives NRE better load independence with respect to the number of apps in the wild. Each app developer would be given a single push feed connection. It is then your job as a developer to handle the transformation of the feed into interesting information and scale appropriately. So if you want to build a departure board feed then you&#8217;ll have to handle the transformations and scalability yourself. NRE are protected as each developer only gets one push feed connection. With the current pull feed, each user of an application is making a connection to NRE&#8217;s servers.</p>
-
-<p>Yes, it will be harder to work with. Yes, you won&#8217;t be able to simply plug your app into the feed and spit the data out. Yes, you&#8217;ll have to think about how you&#8217;re going to scale. But the rewards could be great. You could do things like infer problems on the lines, keep historical data and make pretty graphs. You could even create an alerting engine. You could analyse what happens to trains when the weather is bad. Maybe there are new ways to help commuters in these situations? Is it really helpful to tell people the next train is in 95 minutes from Waterloo? What does that really mean?</p>
-
-<p>So to summarise, it&#8217;s great that NRE are giving out licences to the departure board feed. But what I&#8217;d really like to see is the push feed opened up. Because I believe that with the push feed we&#8217;ll really see what can be done with this data. Let&#8217;s aim higher and look beyond the departure board.</p>
-]]></content>
-  </entry>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   
-  <entry>
-    <title type="html"><![CDATA[My Year in Numbers]]></title>
-    <link href="http://lyonanderson.github.com/blog/2011/01/01/2557330270/"/>
-    <updated>2011-01-01T00:00:00+00:00</updated>
-    <id>http://lyonanderson.github.com/blog/2011/01/01/2557330270</id>
-    <content type="html"><![CDATA[<p>Here are some statistics for the year 2010 relating to me. Probably not that interesting, but here you go.</p>
+</div>
 
-<h2>Email</h2>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/10/04/xcode-cant-find-headers-annoyance/" title="Previous Post: Xcode can't find headers annoyance">&laquo; Xcode can't find headers annoyance</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-<p>My primary domain is lyonanderson.com. Most of my correspondence is via this account. I don&#8217;t include my work email here.<em> At work we recently moved to Lotus Notes so I suppose I no longer send email at work; we&#8217;ve to  call them &#8216;notes&#8217; instead. I don&#8217;t have any stats for that. I would imagine given the complexity of reading <strike>emails</strike> notes with Lotus Notes </em><em>getting statistics would almost be impossible. </em></p>
 
-<p>Sent ~1400 messages (lyonanderson.com)<br/>Received ~6000 messages (lyonanderson.com)</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="facebook_comments" aria-live="polite"><noscript>Please enable JavaScript to view the comments powered by Facebook</noscript>
+<div class="fb-comments"
+     data-href="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/"
+     data-num-posts="10"
+     data-width="600"
+     data-colorscheme="light"></div>
+  </section>
 
-<p><img src="http://media.tumblr.com/tumblr_lecz28egyO1qawfwr.jpg"/></p>
+</div>
 
-<p>(The lower graph includes previous years, but I thought it was interesting to see how my email traffic is increasing year on year).</p>
-
-<!-- more -->
-
-<h2>SMS Usage</h2>
-
-<p>So I&#8217;ve sent and received what I think is quite a large number of text messages. However, speaking to the yoof I had to revise this opinion. Kiddies today send this kind of traffic on a daily basis. </p>
-
-<p>Sent: 3140 messages (35505 words)<br/>Received: 2965 message (42670 words) </p>
-
-<p>Note I include &#8216;x&#8217; as a word. It&#8217;s pronounced Kiss or Kiss Kiss.  A kiss at the end of a SMS can make all the difference. Especially when sending SMSs to your boss.  </p>
-
-<p>Without giving too much away, the following two graphics depict the kinds of words I send in my SMS messages. I have not included &#8216;x&#8217; in these pictures as no one wants to see a giant picture of an &#8216;x&#8217;.</p>
-
-<p>Prominent words in outgoing SMS messages:</p>
-
-<p><img src="http://media.tumblr.com/tumblr_leczettg1U1qawfwr.png"/></p>
-
-<p>Prominent words in incoming SMS messages:</p>
-
-<p><img src="http://media.tumblr.com/tumblr_leczg9j0Qr1qawfwr.png"/></p>
-
-<h2>Twitter</h2>
-
-<p>I posted 1021 twitter status updates.  I would have done a graphic for this too, but everyone seems to be doing that. </p>
-
-<h2>Evernote</h2>
-
-<p>I like <a title="Evernote" target="_blank" href="http://www.evernote.com">Evernote</a> a lot. I throw all kinds of stuff in there. From receipts, instructions manuals and menus, to my personal diary entries (more on that later).</p>
-
-<p>Notes create: 384</p>
-
-<h2>Foursqaure</h2>
-
-<p>I&#8217;ve not been using this as much as I wanted to. I think if more friends used it I would use it more. Still I like the idea and I think it&#8217;s going to go places in 2011. </p>
-
-<p>Checkins: 223</p>
-
-<h2>Running</h2>
-
-<p>The most physical of the numbers in this list. I&#8217;ve really got into running this year. I love it. It does not love me. My knees have been quite bad recently so I&#8217;ve had to cut down lots. I use the Nike+ system to monitor my runs. </p>
-
-<p>932.67 miles made of 146 runs.</p>
-
-<p>The graph below shows how the runs were spread out over 2010. I went a bit crazy in the summer.</p>
-
-<p><img src="http://media.tumblr.com/tumblr_lecztrWO5H1qawfwr.png"/></p>
-
-<h2>Music</h2>
-
-<p>I use Spotify for music. It&#8217;s worth £10 a month to have access to all that music. I use the iPhone client the most. I have all my Spotify clients scrobble to last.fm. Unfortunately, there is a big gap in the data for the beginning of the year. Sorry.</p>
-
-<p>Tracks listened to: 8580</p>
-
-<p>The graph below shows how the listening is spread out over the year. I&#8217;m not sure what the big spike is. I&#8217;ll look into that and get back to you.</p>
-
-<p><img src="http://media.tumblr.com/tumblr_leczxaYYGe1qawfwr.png"/></p>
-
-<h2>Stackoverflow.com reputation</h2>
-
-<p>2010 saw me join stackoverflow.com. I like the site and had been using it as a spectator for a while. I decided to give something back by depositing my pearls of wisdom. As you can see from the graph I kind of got a little bored. I promise to be more active this year.</p>
-
-<p><img src="http://media.tumblr.com/tumblr_led01oQPi31qawfwr.png"/></p>
-
-<h2>Web Search</h2>
-
-<p>Google can keep track of the web searches that you do. It&#8217;s quite scary, but looking back at the data can be interesting. I don&#8217;t have the tracking on all the machines I use for search, but the graphs below show the lion&#8217;s share. </p>
-
-<p><img src="http://media.tumblr.com/tumblr_led040IKbn1qawfwr.png"/></p>
-
-<h2>AppStore</h2>
-
-<p>I have purchased the following applications for my iPhone/iPad from the iTunes AppStore.</p>
-
-<blockquote>
-
-<p>The Cloud Wi-Fi Finder, Labyrinth, Tumblr, NYTimes, Toiluxe - central London edition, Let&#8217;s Golf!, WorkSnug London, OffMaps, SnowRemote, BlockChalk, AudioBoo, Distances, defriended, Digg, Chambers Dictionary of the English language, Vodafone Navigation, Chambers Thesaurus, Instapaper Pro, WhatsApp Messenger, Gangstar: West Coast Hustle, I Am T-Pain, Nike True City, Flickit Pro, Sleep Cycle alarm clock, WordCrasher, Friend Focus, AutoStitch Panorama, Metro UK, allRadio, HourFace, Babelshot (photo translator), CameraBag, Advanced Bubble Level, StoreRanks, VirginTrains, PositionApp‚Ñ¢, ToonPAINT, Quickoffice Connect, Happening, Grand Theft Auto: Chinatown Wars, myStarbucks UK, Pocket Informant LITE (Calendar, VLC Remote £0.00, Chomp., DriveSaver, WhatBus, ooTunes Radio - Recording and Alarm Clock!, Digital SLR Photography Toolkit For Dummies, iPlane - Leeds Bradford International Airport, Assassin&#8217;s Creed II: Multiplayer, The OscarsÆ, Zen Bound‚Ñ¢ Lite, NextBuses, MyBus, iSimples, Angry Birds, MicroCars, SpongeBob Diner Dash Lite, ScribbleLive, Opera Mini Web browser, We Rule, TrueHDR, Mapzen POI Collector, Plane Finder £0.00, Lonely Planet London City Guide, Lonely Planet Paris City Guide, Lonely Planet Istanbul City Guide, Lonely Planet Barcelona City Guide, Lonely Planet Amsterdam City Guide, Lonely Planet Rome City Guide, Lonely Planet Berlin City Guide, Lonely Planet Copenhagen City Guide, Lonely Planet Vienna City Guide, Lonely Planet Budapest City Guide, Lonely Planet Stockholm City Guide, Lonely Planet Munich City Guide, Lonely Planet Moscow City Guide, Vancouver Travel Guide - The Sights, mopho, iBooks, GoodReader for iPad, The Guardian Eyewitness, Evernote, Syncopy, Netflix, IMDb Movies &amp; TV, TweetDeck for iPad, ABC Player, AdobeÆ Ideas 1.0 for iPad, eBay for iPad, Numbers, Mocha VNC Lite, Granimator - The Wallpaper Creator, Molecules, Instapaper Pro, Feeddler RSS Reader for iPad, Urbanspoon for iPad, Marvel Comics, TIME Magazine, TIME May 10, USA TODAY for iPad, Backgrounds HD, NPR for iPad, Wikipanion for iPad, PCalc Lite Calculator, Yahoo! Entertainment, Simplenote, Dropbox, Twitterrific for iPad, BBC News, ArtStudio for iPad, AIM for iPad, FlickStackr, StreamToMe, Amazon Mobile, sobees for Facebook, Pro HDR, MacUser Magazine, N.O.V.A. - Near Orbit Vanguard Alliance HD, NDrive UK &amp; Ireland, Hipstamatic, WIRED Magazine, Pages, Air Video - Watch your videos anywhere!, GoodReader for iPad, Reeder for iPad, FatBooth, PhotoGrab, iMovie, SimCity‚Ñ¢, AgingBooth, Barcelona Metro 09, Eliminate:GunRange, Enigmo 2, Feathers Visage, You Gotta See This!, Camera+ ‚the ultimate photo app, ShutterSnitch, WolframAlpha, Nike+ GPS, Flight Control, Osmos, Plane Finder AR, The Secret of Monkey Island: Special Edition, Nigella Quick Collection, LogMeIn Ignition, Geometry Wars‚Ñ¢: Touch, Friendly - Facebook Browser, SABMobile, myNZB, .03 seconds Pro, traveline south &amp; east, TuneIn Radio, TuneIn Radio, Scanner Pro: scan multipage documents, ReaddleDocs (documents/attachments viewer and file manager), LEGO Harry Potter: Years 1-4, Momento (Diary/Journal), COMMAND &amp; CONQUER‚ RED ALERT‚ for iPad, SCRABBLE for iPad, SimCity Deluxe for iPad, TETRIS for iPad, TETRIS, ScrabbleÆ, RAGE HD, QI, The Incident</p>
-
-</blockquote>
-
-<h2>Diary Entries</h2>
-
-<p>I use evernote to keep a basic kind of diary. I have made 26 entries this year. Again, I could do with doing more this year.</p>
-]]></content>
-  </entry>
+<aside class="sidebar">
   
-</feed>
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/">(Failing to) Make iOS6 Remote View Controllers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/04/xcode-cant-find-headers-annoyance/">Xcode can't find headers annoyance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/01/typescript/">TypeScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/27/ios6-detailed-battery-info/">iOS6 Detailed Battery Info</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/27/zeebox-launches-in-the-us/">Zeebox Launches in the US</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("ishra", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/ishra" class="twitter-follow-button" data-show-count="false">Follow @ishra</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Christopher Lyon Anderson -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=465715510117590&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
