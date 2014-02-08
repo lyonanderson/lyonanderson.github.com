@@ -115,7 +115,7 @@
 
 <div class="entry-content"><p>I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&#8217;ll be greeted with a screen asking you for a ticket number:</p>
 
-<p><img src="/images/IMG_9491.png" alt="Screenshot" /></p>
+<p><img src="/images/IMG_9491.PNG" alt="Screenshot" /></p>
 
 <p>Where do you get a ticket number from? You could go to the genius bar, but there is an easier way. We can use a a man-in-the-middle proxy and spoof iOS Diagnostics into thinking it has a valid ticket. I decided to use <a href="http://mitmproxy.org">mitmproxy</a> as it supports https and can be scripted. I&#8217;ve made a mitmproxy script that you can use to spoof iOS Diagnostics and capture the payload that would be sent to Apple. So let&#8217;s being.</p>
 
