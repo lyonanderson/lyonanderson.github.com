@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2014-02-08T14:56:17+00:00</updated>
+  <updated>2014-02-08T14:59:07+00:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -28,7 +28,7 @@
 
 <p>If you now enter a ticket number - the script expects 123456 - and press Extended Tests, iOS Diagnostics will make a request to <a href="https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456">https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456</a>. If you don&#8217;t have a valid ticket Apple will politely responds with a not authorised 401. Our script is going to responsd with a 200 and the same body we used before. It appears as though any positive response is good. Next comes the good stuff. iOS Diagnostics will now perform two uploads. First to <a href="https://iosdiags.apple.com/MR3Server/MR3Post">https://iosdiags.apple.com/MR3Server/MR3Post</a> and then, if you choose extended test, to <a href="https://iosdiags.apple.com/ios/log/extendedUpload">https://iosdiags.apple.com/ios/log/extendedUpload</a>.</p>
 
-<p>To get started download and install <a href="http://mitmproxy.org/">mitmproxy</a> and download the script <a href="downloads/capture.py">here</a>. As iOS diagnostics uses https you&#8217;ll need to install the mitmproxy CA on your device. You can find instructions <a href="http://mitmproxy.org/doc/ssl.html">here</a>. You can start the command line version of mitmproxy - mitmdump - like so:</p>
+<p>To get started download and install <a href="http://mitmproxy.org/">mitmproxy</a> and download the script <a href="http://lyonanderson.github.com/downloads/capture.py">here</a>. As iOS diagnostics uses https you&#8217;ll need to install the mitmproxy CA on your device. You can find instructions <a href="http://mitmproxy.org/doc/ssl.html">here</a>. You can start the command line version of mitmproxy - mitmdump - like so:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>mitmdump -e -s capture.py </span></code></pre></td></tr></table></div></figure>
