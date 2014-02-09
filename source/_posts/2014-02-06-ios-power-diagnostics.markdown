@@ -8,7 +8,7 @@ categories:
 
 I've recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL **diags://** into Safari. <!-- more --> You'll be greeted with a screen asking you for a ticket number:
 
-![Screenshot](/images/IMG_9491.png)
+![Screenshot](/images/IMG_9491.PNG)
 
 
 
