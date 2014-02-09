@@ -3,33 +3,18 @@ layout: default
 single: true
 ---
 
-<div>
-<article class="hentry" role="article">
-  {% include article.html %}
-  <footer>
-    <p class="meta">
-      {% include post/author.html %}
-      {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
-      {% include post/categories.html %}
-    </p>
-    {% unless page.sharing == false %}
-      {% include post/sharing.html %}
-    {% endunless %}
-    <p class="meta">
-      {% if page.previous.url %}
-        <a class="basic-alignment left" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&laquo; {{page.previous.title}}</a>
-      {% endif %}
-      {% if page.next.url %}
-        <a class="basic-alignment right" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">{{page.next.title}} &raquo;</a>
-      {% endif %}
-    </p>
-  </footer>
+<article class="post">
+    {% include article.html %}
 </article>
+
+{% unless page.sharing == false %}
+        {% include post/sharing.html %}
+{% endunless %}
+
 {% if site.disqus_short_name and page.comments == true %}
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
-  </section>
+<section id="comments">
+    <div id="disqus_thread">{% include post/disqus_thread.html %}</div>
+</section>
 {% endif %}
 {% if site.facebook_appid and page.comments == true %}
   <section>
@@ -37,13 +22,4 @@ single: true
     <div id="facebook_comments" aria-live="polite">{% include custom/facebook_comments.html %}</div>
   </section>
 {% endif %}
-</div>
-{% unless page.sidebar == false %}
-<aside class="sidebar">
-  {% if site.post_asides.size %}
-    {% include_array post_asides %}
-  {% else %}
-    {% include_array default_asides %}
-  {% endif %}
-</aside>
-{% endunless %}
+

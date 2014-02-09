@@ -12,18 +12,19 @@ layout: default
   {% endfor %}
   <div class="pagination">
     {% if paginator.next_page %}
-      <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
+      <a class="previous btn btn-light" href="{{paginator.next_page}}">&larr; Older</a>
     {% endif %}
-    <a href="/blog/archives">Blog Archives</a>
+    <a class="archives btn btn-light" href="/blog/archives">Blog Archives</a>
     {% if paginator.previous_page %}
-    <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
+    <a class="next btn btn-light" href="{{paginator.previous_page}}">Newer &rarr;</a>
     {% endif %}
   </div>
 </div>
+
+{% if site.blog_index_asides.size %}
 <aside class="sidebar">
-  {% if site.blog_index_asides.size %}
     {% include_array blog_index_asides %}
   {% else %}
     {% include_array default_asides %}
-  {% endif %}
 </aside>
+{% endif %}
