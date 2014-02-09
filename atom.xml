@@ -4,7 +4,7 @@
   <title><![CDATA[Musings of LyonAnderson]]></title>
   <link href="http://lyonanderson.github.com/atom.xml" rel="self"/>
   <link href="http://lyonanderson.github.com/"/>
-  <updated>2014-02-08T14:59:07+00:00</updated>
+  <updated>2014-02-09T00:17:43+00:00</updated>
   <id>http://lyonanderson.github.com/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -18,25 +18,25 @@
     <link href="http://lyonanderson.github.com/blog/2014/02/06/ios-power-diagnostics/"/>
     <updated>2014-02-06T21:41:00+00:00</updated>
     <id>http://lyonanderson.github.com/blog/2014/02/06/ios-power-diagnostics</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&#8217;ll be greeted with a screen asking you for a ticket number:</p>
+    <content type="html"><![CDATA[<p>I&rsquo;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&rsquo;ll be greeted with a screen asking you for a ticket number:</p>
 
-<p><img src="http://lyonanderson.github.com/images/IMG_9491.PNG" alt="Screenshot" /></p>
+<p><img src="http://lyonanderson.github.com/images/IMG_9491.png" alt="Screenshot" /></p>
 
-<p>Where do you get a ticket number from? You could go to the genius bar, but there is an easier way. We can use a a man-in-the-middle proxy and spoof iOS Diagnostics into thinking it has a valid ticket. I decided to use <a href="http://mitmproxy.org">mitmproxy</a> as it supports https and can be scripted. I&#8217;ve made a mitmproxy script that you can use to spoof iOS Diagnostics and capture the payload that would be sent to Apple. So let&#8217;s being.</p>
+<p>Where do you get a ticket number from? You could go to the genius bar, but there is an easier way. We can use a a man-in-the-middle proxy and spoof iOS Diagnostics into thinking it has a valid ticket. I decided to use <a href="http://mitmproxy.org">mitmproxy</a> as it supports https and can be scripted. I&rsquo;ve made a mitmproxy script that you can use to spoof iOS Diagnostics and capture the payload that would be sent to Apple. So let&rsquo;s being.</p>
 
-<p>When started iOS Diagnostics makes a request to <a href="https://iosdiags.apple.com/ios/TestConfiguration/1.2">https://iosdiags.apple.com/ios/TestConfiguration/1.2</a> to find out what diagnostics are available for your device. The response is a plist containing a dictionary keyed on device type mapping to an array of diagnostic types. The only value I&#8217;ve seen is powerDiagnostics. A quick poke around in the binary seems to confirm this is the only accepted value at the moment. If your device type matches you&#8217;ll be offered &#8216;Extended Tests&#8217;. Currently Apple only seems to offer this for iPhones and not iPads. However, I&#8217;ve been able to get extended diagnostics from an iPad too. You&#8217;ll need to edit XML_OK_RESPONSE to include your device type, if you want the more detailed power logs.</p>
+<p>When started iOS Diagnostics makes a request to <a href="https://iosdiags.apple.com/ios/TestConfiguration/1.2">https://iosdiags.apple.com/ios/TestConfiguration/1.2</a> to find out what diagnostics are available for your device. The response is a plist containing a dictionary keyed on device type mapping to an array of diagnostic types. The only value I&rsquo;ve seen is powerDiagnostics. A quick poke around in the binary seems to confirm this is the only accepted value at the moment. If your device type matches you&rsquo;ll be offered &lsquo;Extended Tests&rsquo;. Currently Apple only seems to offer this for iPhones and not iPads. However, I&rsquo;ve been able to get extended diagnostics from an iPad too. You&rsquo;ll need to edit XML_OK_RESPONSE to include your device type, if you want the more detailed power logs.</p>
 
-<p>If you now enter a ticket number - the script expects 123456 - and press Extended Tests, iOS Diagnostics will make a request to <a href="https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456">https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456</a>. If you don&#8217;t have a valid ticket Apple will politely responds with a not authorised 401. Our script is going to responsd with a 200 and the same body we used before. It appears as though any positive response is good. Next comes the good stuff. iOS Diagnostics will now perform two uploads. First to <a href="https://iosdiags.apple.com/MR3Server/MR3Post">https://iosdiags.apple.com/MR3Server/MR3Post</a> and then, if you choose extended test, to <a href="https://iosdiags.apple.com/ios/log/extendedUpload">https://iosdiags.apple.com/ios/log/extendedUpload</a>.</p>
+<p>If you now enter a ticket number &ndash; the script expects 123456 &ndash; and press Extended Tests, iOS Diagnostics will make a request to <a href="https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456">https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456</a>. If you don&rsquo;t have a valid ticket Apple will politely responds with a not authorised 401. Our script is going to responsd with a 200 and the same body we used before. It appears as though any positive response is good. Next comes the good stuff. iOS Diagnostics will now perform two uploads. First to <a href="https://iosdiags.apple.com/MR3Server/MR3Post">https://iosdiags.apple.com/MR3Server/MR3Post</a> and then, if you choose extended test, to <a href="https://iosdiags.apple.com/ios/log/extendedUpload">https://iosdiags.apple.com/ios/log/extendedUpload</a>.</p>
 
-<p>To get started download and install <a href="http://mitmproxy.org/">mitmproxy</a> and download the script <a href="http://lyonanderson.github.com/downloads/capture.py">here</a>. As iOS diagnostics uses https you&#8217;ll need to install the mitmproxy CA on your device. You can find instructions <a href="http://mitmproxy.org/doc/ssl.html">here</a>. You can start the command line version of mitmproxy - mitmdump - like so:</p>
+<p>To get started download and install <a href="http://mitmproxy.org/">mitmproxy</a> and download the script <a href="downloads/capture.py">here</a>. As iOS diagnostics uses https you&rsquo;ll need to install the mitmproxy CA on your device. You can find instructions <a href="http://mitmproxy.org/doc/ssl.html">here</a>. You can start the command line version of mitmproxy &ndash; mitmdump &ndash; like so:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>mitmdump -e -s capture.py </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You&#8217;ll then need to set your proxy in the wifi settings on your iOS device to the IP address of your machine running the proxy. The default port is 8080. Once you&#8217;re all configured go to Safari and go to <strong>diags://</strong> Enter <strong>123456</strong> as the ticket number and select Extended Tests. After a short time you&#8217;ll be left with two tar.gz files containing all the good stuff.</p>
+<p>You&rsquo;ll then need to set your proxy in the wifi settings on your iOS device to the IP address of your machine running the proxy. The default port is 8080. Once you&rsquo;re all configured go to Safari and go to <strong>diags://</strong> Enter <strong>123456</strong> as the ticket number and select Extended Tests. After a short time you&rsquo;ll be left with two tar.gz files containing all the good stuff.</p>
 
-<p>The smaller file starting with &#8216;general&#8217; contains logs relating to iCloud backups, memory and accessories.  The accessory logs are in the iAPEvents directory. You&#8217;ll need to load them into Console to view them. It looks like each time a device is connected (even those connected over Bluetooth LE) an entry is written.  For example:</p>
+<p>The smaller file starting with &lsquo;general&rsquo; contains logs relating to iCloud backups, memory and accessories.  The accessory logs are in the iAPEvents directory. You&rsquo;ll need to load them into Console to view them. It looks like each time a device is connected (even those connected over Bluetooth LE) an entry is written.  For example:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -54,7 +54,7 @@
 </span><span class='line'>Jan  9 21:35:30 Ishras-iPhone-5S iapd[149] &lt;Warning&gt;: } // End AccessoryInfo</span></code></pre></td></tr></table></div></figure>
 
 
-<p>The larger file starting with &#8216;power&#8217; contains all the power logs. It&#8217;s a compressed <a href="http://en.wikipedia.org/wiki/Cpio">CPIO</a> file containing a set of compressed text files. There is one file for each day. I found over two weeks of files on my device. Each file is very detailed and on my iPhone 5s about 16mb a day. If you look inside you&#8217;ll see lots of entries, each prefixed with a time and type. Most of if is pretty clear, here are some examples:</p>
+<p>The larger file starting with &lsquo;power&rsquo; contains all the power logs. It&rsquo;s a compressed <a href="http://en.wikipedia.org/wiki/Cpio">CPIO</a> file containing a set of compressed text files. There is one file for each day. I found over two weeks of files on my device. Each file is very detailed and on my iPhone 5s about 16mb a day. If you look inside you&rsquo;ll see lots of entries, each prefixed with a time and type. Most of if is pretty clear, here are some examples:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -92,7 +92,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>02/01/14 00:14:21 [Application] id=com.apple.mobilesafari; pid=399.00; mode=Foreground Running; reason=&lt;unknown&gt;; UIBackgroundModes=audio,continuousFallback; display_name=Safari; executable=MobileSafari; version=7.0;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>It&#8217;s all interesting stuff. Hopefully I&#8217;ll get some time to write scripts to extract graphs from the logs. So next time you have one of those days where the battery lasts no time, take a look in the logs and you&#8217;ll probably be able to find the culprit!</p>
+<p>It&rsquo;s all interesting stuff. Hopefully I&rsquo;ll get some time to write scripts to extract graphs from the logs. So next time you have one of those days where the battery lasts no time, take a look in the logs and you&rsquo;ll probably be able to find the culprit!</p>
 ]]></content>
   </entry>
   
@@ -101,14 +101,14 @@
     <link href="http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/"/>
     <updated>2012-10-08T14:47:00+01:00</updated>
     <id>http://lyonanderson.github.com/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve been following with great interest Ole Begemann&#8217;s <a href="http://oleb.net/blog/2012/10/remote-view-controllers-in-ios-6/">research</a> into remote view controllers in iOS6. I wanted to look at the problem from the other end. I want to make my own remote view controllers. Clearly, we&#8217;ll be using private APIs and therefore, none of this can make it into your apps for the store. I&#8217;ll say up front I was not able to get this working, but I&#8217;ve found some interesting things out.</p>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been following with great interest Ole Begemann&rsquo;s <a href="http://oleb.net/blog/2012/10/remote-view-controllers-in-ios-6/">research</a> into remote view controllers in iOS6. I wanted to look at the problem from the other end. I want to make my own remote view controllers. Clearly, we&rsquo;ll be using private APIs and therefore, none of this can make it into your apps for the store. I&rsquo;ll say up front I was not able to get this working, but I&rsquo;ve found some interesting things out.</p>
 
 <!-- more -->
 
 
-<p>As you&#8217;d expect there are two ends to the problem.  At one end a  service which exports some stuff, at the other end a client. The client requests a remote view controller, from a service provider, and is given an instance of a _UIRemoteViewController which it can present.  It would appear that Apple have wrapped up all the XPC heavy lifting into the _UIRemoteViewController and associated _UIViewService classes.</p>
+<p>As you&rsquo;d expect there are two ends to the problem.  At one end a  service which exports some stuff, at the other end a client. The client requests a remote view controller, from a service provider, and is given an instance of a _UIRemoteViewController which it can present.  It would appear that Apple have wrapped up all the XPC heavy lifting into the _UIRemoteViewController and associated _UIViewService classes.</p>
 
-<p>I think I&#8217;ve got the client end working, in as much as I can bring up Apple built in remote controllers using the following technique:</p>
+<p>I think I&rsquo;ve got the client end working, in as much as I can bring up Apple built in remote controllers using the following technique:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -139,18 +139,18 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This will bring up the standard mail composer. All good. Now let&#8217;s look at making our own service.  As Ole pointed out, Apple provide hidden applications/services (via SBAppTags in the Info.plist) which are started when a remote view controller is needed. So if you run the above code you&#8217;ll see a process called MailCompositionService is started (if it&#8217;s not already there). If we look inside the app bundle for MailCompositionService you&#8217;ll see some interesting keys:</p>
+<p>This will bring up the standard mail composer. All good. Now let&rsquo;s look at making our own service.  As Ole pointed out, Apple provide hidden applications/services (via SBAppTags in the Info.plist) which are started when a remote view controller is needed. So if you run the above code you&rsquo;ll see a process called MailCompositionService is started (if it&rsquo;s not already there). If we look inside the app bundle for MailCompositionService you&rsquo;ll see some interesting keys:</p>
 
 <p><img src="http://lyonanderson.github.com/images/mailComposerInfoList.png" alt="" /></p>
 
-<p>It would appear as though SBMachServices defines the name of the XPC service we are offering. The budle indetifier matches the name used in the call to [UIRemoteViewController requestViewController:connectionHandler:].  We can now create an application of our own and add these keys to our Info.plist. I created an app called TestRemote and used com.electriclabs.TestRemote as the bundle name.  The app has nothing but a blank view to start with. If you start the app and look in the system console you&#8217;ll see this error:</p>
+<p>It would appear as though SBMachServices defines the name of the XPC service we are offering. The budle indetifier matches the name used in the call to [UIRemoteViewController requestViewController:connectionHandler:].  We can now create an application of our own and add these keys to our Info.plist. I created an app called TestRemote and used com.electriclabs.TestRemote as the bundle name.  The app has nothing but a blank view to start with. If you start the app and look in the system console you&rsquo;ll see this error:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="mi">08</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">2012</span> <span class="mi">17</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mf">39.736</span> <span class="n">backboardd</span><span class="p">[</span><span class="mi">10007</span><span class="p">]</span><span class="o">:</span> <span class="n">Ignoring</span> <span class="n">info</span> <span class="n">dictionary</span> <span class="n">key</span> <span class="n">SBMachServices</span> <span class="n">since</span> <span class="n">com</span><span class="p">.</span><span class="n">electriclabs</span><span class="p">.</span><span class="n">TestRemote</span> <span class="n">is</span> <span class="n">not</span> <span class="n">a</span> <span class="n">system</span> <span class="n">app</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>More on this later&#8230; I now wanted to understand what MailCompositionService does when it&#8217;s started by iOS. To do this I used dtrace with the following program:</p>
+<p>More on this later&hellip; I now wanted to understand what MailCompositionService does when it&rsquo;s started by iOS. To do this I used dtrace with the following program:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -221,14 +221,14 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>From the output search for &#8216;[_UIViewServiceXPCListener initWithName:connectionHandler&#8217;, you should see a line like this:</p>
+<p>From the output search for &lsquo;[_UIViewServiceXPCListener initWithName:connectionHandler&rsquo;, you should see a line like this:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="mi">26153</span><span class="p">]</span>  <span class="mi">26153</span>     <span class="n">Code</span>         <span class="mh">0x0000000000596ae3</span> <span class="mh">0x00ac9ae3</span> <span class="mh">0x000000000000023d</span> <span class="mh">0x000e0000</span> <span class="o">-</span><span class="p">[</span><span class="n">_UIViewServiceXPCListener</span> <span class="nl">initWithName:connectionHandler:</span><span class="p">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The important bit is the address - 0x00ac9ae3. We can now set a breakpoint:</p>
+<p>The important bit is the address &ndash; 0x00ac9ae3. We can now set a breakpoint:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">(</span><span class="n">lldb</span><span class="p">)</span>  <span class="n">breakpoint</span> <span class="n">set</span> <span class="o">-</span><span class="n">a</span> <span class="mh">0x00ac9ae3</span>
@@ -256,7 +256,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I found that there were no variables defined, using frame variable, so I had to fall back to registers. There is a great article <a href="http://www.clarkcox.com/blog/2009/02/04/inspecting-obj-c-parameters-in-gdb/">here</a> on how to do this. Basically on i386 you can get at self using &#8216;po <em>(id</em>)($ebp+8)&#8217; and the first and second paramters using  po <em>(id</em>)($ebp+16) and po <em>(id</em>)($ebp+20) respectively. A peek at self showed we are not quite far enough in:</p>
+<p>I found that there were no variables defined, using frame variable, so I had to fall back to registers. There is a great article <a href="http://www.clarkcox.com/blog/2009/02/04/inspecting-obj-c-parameters-in-gdb/">here</a> on how to do this. Basically on i386 you can get at self using &lsquo;po <em>(id</em>)($ebp+8)&rsquo; and the first and second paramters using  po <em>(id</em>)($ebp+16) and po <em>(id</em>)($ebp+20) respectively. A peek at self showed we are not quite far enough in:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -265,7 +265,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>We want self to be an intance of <em>UIViewServiceXPCListener. So I stepped in a few more levels using &#8216;thread step-in&#8217;, until self was </em>UIViewServiceXPCListener. I could now look at the paramters:</p>
+<p>We want self to be an intance of <em>UIViewServiceXPCListener. So I stepped in a few more levels using &lsquo;thread step-in&rsquo;, until self was </em>UIViewServiceXPCListener. I could now look at the paramters:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -278,7 +278,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>So no massive suprises, _UIViewServiceXPCListener expects a name which in the case of MailComposistionService is &#8220;com.apple.uikit.viewservice.com.apple.MailCompositionService&#8221; and a callback block. I&#8217;m not sure of the structure of the block, but I&#8217;m going to take a punt on it having two parameters. The first being a connection and the second an NSError.</p>
+<p>So no massive suprises, _UIViewServiceXPCListener expects a name which in the case of MailComposistionService is &ldquo;com.apple.uikit.viewservice.com.apple.MailCompositionService&rdquo; and a callback block. I&rsquo;m not sure of the structure of the block, but I&rsquo;m going to take a punt on it having two parameters. The first being a connection and the second an NSError.</p>
 
 <p>I now extended my didFinishLaunchingWithOptions method of the service TestRemote to look like this:</p>
 
@@ -331,9 +331,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>So I&#8217;m expecting that when my service is needed I&#8217;ll get a callback on my connectionHandler and from there I can create an instance of our view controller. Communication between service and host will be via XPCObjects.</p>
+<p>So I&rsquo;m expecting that when my service is needed I&rsquo;ll get a callback on my connectionHandler and from there I can create an instance of our view controller. Communication between service and host will be via XPCObjects.</p>
 
-<p>I then created a simple client app called TestRemoteClient. We&#8217;ll need a _UIRemoteViewController subclass
+<p>I then created a simple client app called TestRemoteClient. We&rsquo;ll need a _UIRemoteViewController subclass
 which I called ELTestRemoteViewController. For simplicity I created a simple view controller with a button which when pressed tries to create an instance of our remote view controller:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -369,19 +369,19 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Unfortunately, I&#8217;ve never got this to work. I always get an error:</p>
+<p>Unfortunately, I&rsquo;ve never got this to work. I always get an error:</p>
 
 <p> <code>
  2012-10-08 15:15:05.357 RemoteViewControllerTest[5286:c07] Arg 1 (null), Arg 2 Error Domain=_UIViewServiceInterfaceErrorDomain Code=2 "The operation couldn’t be completed. (_UIViewServiceInterfaceErrorDomain error 2.)"
 </code></p>
 
-<p> Early I said I got an error when running the service app TestRemote - &#8216;Ignoring info dictionary key SBMachServices since com.electriclabs.TestRemote is not a system app&#8217;. As a last ditch I tried moving TestRemote into the iOS simulator&#8217;s main Application folder. Hoping it would be blessed as a system app. Note I had to reset the simulator after moving it so it appeared. Alas, this did not work however, the error did change when running the client app:</p>
+<p> Early I said I got an error when running the service app TestRemote &ndash; &lsquo;Ignoring info dictionary key SBMachServices since com.electriclabs.TestRemote is not a system app&rsquo;. As a last ditch I tried moving TestRemote into the iOS simulator&rsquo;s main Application folder. Hoping it would be blessed as a system app. Note I had to reset the simulator after moving it so it appeared. Alas, this did not work however, the error did change when running the client app:</p>
 
 <p> <code>
  2012-10-08 14:31:58.635 RemoteViewControllerTest[2224:c07] Arg 1 (null), Arg 2 Error Domain=NSCocoaErrorDomain Code=581952 "The operation couldn’t be completed. (Cocoa error 581952.)"
 </code></p>
 
-<p> So there we are. I&#8217;m a bit stuck. Clearly, there are things missing. I don&#8217;t know where I am supposed to tell UIKit the name of my view controller on the service side, or the host interface. I expect i&#8217;d have to this in the connection handler block like thus:</p>
+<p> So there we are. I&rsquo;m a bit stuck. Clearly, there are things missing. I don&rsquo;t know where I am supposed to tell UIKit the name of my view controller on the service side, or the host interface. I expect i&rsquo;d have to this in the connection handler block like thus:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -408,7 +408,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;d love to get this working.</p>
+<p>I&rsquo;d love to get this working.</p>
 ]]></content>
   </entry>
   
@@ -417,7 +417,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
     <link href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/"/>
     <updated>2012-10-04T15:37:00+01:00</updated>
     <id>http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance</id>
-    <content type="html"><![CDATA[<p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did try an old trick.</p>
+    <content type="html"><![CDATA[<p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&rsquo;ve cleared derived data. You&rsquo;ve checked your paths. You&rsquo;ve said 10 Hail Marys. Yes, we&rsquo;ve all been there. Last time this happened &ndash; today &ndash; I did try an old trick.</p>
 
 <!-- more -->
 
@@ -434,20 +434,20 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
 </pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.299 Xcode[70288]:  IDEIndexingClangInvocation: ---- X/Redacted.m</span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is normal. However, you&#8217;ll probably find lines like these:</p>
+<p>This is normal. However, you&rsquo;ll probably find lines like these:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.321 Xcode[70288]:  IDEIndexingClangInvocation: [diagnostic]: Redacted.h:9:9: fatal error: 'Refacted.h' file not found
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is not normal. You&#8217;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&#8217;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
+<p>This is not normal. You&rsquo;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&rsquo;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sed -n "s/.*fatal error: '\(.*\)' file not found.*/\1/p" xcodelog.txt  | sort | uniq</span></code></pre></td></tr></table></div></figure>
 
 
-<p>You should now have a long list of files. Here is the boring part. You&#8217;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&#8217;re done turn off the logging and restart Xcode:</p>
+<p>You should now have a long list of files. Here is the boring part. You&rsquo;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&rsquo;re done turn off the logging and restart Xcode:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>defaults delete com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel</span></code></pre></td></tr></table></div></figure>
@@ -462,7 +462,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
     <link href="http://lyonanderson.github.com/blog/2012/10/01/typescript/"/>
     <updated>2012-10-01T22:14:00+01:00</updated>
     <id>http://lyonanderson.github.com/blog/2012/10/01/typescript</id>
-    <content type="html"><![CDATA[<p>Microsoft have released a typed superset of JavaScript called <a href="http://www.typescriptlang.org">TypeScript</a>. I spent a sizable portion of my life looking at types and JavaScript, in particular <a href="http://pubs.doc.ic.ac.uk/authors/cla97/">Inferring types for JavaScript programmes</a>. I still find the area interesting, and it&#8217;s nice to see this new and exciting work. I wonder if TypeScript has a sound type system? I see already that someone on Twitter has <a href="https://twitter.com/puffnfresh/statuses/252816990782230528">pointed out</a> that arrays are mutable and covariant:</p>
+    <content type="html"><![CDATA[<p>Microsoft have released a typed superset of JavaScript called <a href="http://www.typescriptlang.org">TypeScript</a>. I spent a sizable portion of my life looking at types and JavaScript, in particular <a href="http://pubs.doc.ic.ac.uk/authors/cla97/">Inferring types for JavaScript programmes</a>. I still find the area interesting, and it&rsquo;s nice to see this new and exciting work. I wonder if TypeScript has a sound type system? I see already that someone on Twitter has <a href="https://twitter.com/puffnfresh/statuses/252816990782230528">pointed out</a> that arrays are mutable and covariant:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -495,7 +495,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>When you run the above you&#8217;ll get an error stating that Object #&lt;C> has no method &#8216;foo&#8217;. The Java type system also has covariant arrays, but would prevent the assignment on line 11 at runtime:</p>
+<p>When you run the above you&rsquo;ll get an error stating that Object #&lt;C> has no method &lsquo;foo&rsquo;. The Java type system also has covariant arrays, but would prevent the assignment on line 11 at runtime:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -531,14 +531,14 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
     <link href="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info/"/>
     <updated>2012-09-27T11:32:00+01:00</updated>
     <id>http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info</id>
-    <content type="html"><![CDATA[<p>I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&#8217;ve put together a quick and dirty app which displays most of the interesting stuff. You can get it on github <a href="https://github.com/lyonanderson/BatteryInfo">here</a>. Being ever so fashionable I only support iOS6. Plus, it doesn&#8217;t work on iOS5!</p>
+    <content type="html"><![CDATA[<p>I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&rsquo;ve put together a quick and dirty app which displays most of the interesting stuff. You can get it on github <a href="https://github.com/lyonanderson/BatteryInfo">here</a>. Being ever so fashionable I only support iOS6. Plus, it doesn&rsquo;t work on iOS5!</p>
 
 <p><img src="http://lyonanderson.github.com/images/IMG_4055.png" alt="Screenshot" /></p>
 
 <!-- more -->
 
 
-<p>Delving deeper, there is a class called OSDBattery which exposes battery metrics including the battery cycle count and serial number.  Looking at the <a href="https://github.com/nst/iOS-Runtime-Headers/">header dump</a> of iOS6 shows OSDBattery in the FactoryDiags framework. However, on device you won&#8217;t find this framework. Instead, you need to load the GAIA framework to use OSDBattery. So for example, to get the battery cycle count:</p>
+<p>Delving deeper, there is a class called OSDBattery which exposes battery metrics including the battery cycle count and serial number.  Looking at the <a href="https://github.com/nst/iOS-Runtime-Headers/">header dump</a> of iOS6 shows OSDBattery in the FactoryDiags framework. However, on device you won&rsquo;t find this framework. Instead, you need to load the GAIA framework to use OSDBattery. So for example, to get the battery cycle count:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -559,7 +559,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>It goes without saying that you can&#8217;t submit an app using this code! It&#8217;s a private framework. Don&#8217;t be an idiot.  I&#8217;m not sure how useful all of this is. I&#8217;d quite like to run the app on a refurbished device to see what is says. I&#8217;m also not clear as to where exactly the count is stored i.e. in the battery or on device. Maybe the <a href="http://www.ifixit.com">iFixit</a> guys can swap batteries in a device and let me know?</p>
+<p>It goes without saying that you can&rsquo;t submit an app using this code! It&rsquo;s a private framework. Don&rsquo;t be an idiot.  I&rsquo;m not sure how useful all of this is. I&rsquo;d quite like to run the app on a refurbished device to see what is says. I&rsquo;m also not clear as to where exactly the count is stored i.e. in the battery or on device. Maybe the <a href="http://www.ifixit.com">iFixit</a> guys can swap batteries in a device and let me know?</p>
 ]]></content>
   </entry>
   
@@ -568,7 +568,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
     <link href="http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us/"/>
     <updated>2012-09-27T09:40:00+01:00</updated>
     <id>http://lyonanderson.github.com/blog/2012/09/27/zeebox-launches-in-the-us</id>
-    <content type="html"><![CDATA[<p>After many months of hard work Zeebox has finally launched in the US. This coincides with a new UK release too. We&#8217;ve added a load of great new features including a What&#8217;s Hot section, an activity feed to see what you&#8217;re friends have been doing, and a great new commenting system. Electric Labs has been working with Zeebox since July last year - how time flies! You can grab the UK version <a href="http://itunes.apple.com/us/app/zeebox/id454689266?ls=1&amp;mt=8">here</a> and the US version <a href="http://itunes.apple.com/us/app/zeebox/id513267737?ls=1&amp;mt=8">here</a>.</p>
+    <content type="html"><![CDATA[<p>After many months of hard work Zeebox has finally launched in the US. This coincides with a new UK release too. We&rsquo;ve added a load of great new features including a What&rsquo;s Hot section, an activity feed to see what you&rsquo;re friends have been doing, and a great new commenting system. Electric Labs has been working with Zeebox since July last year &ndash; how time flies! You can grab the UK version <a href="http://itunes.apple.com/us/app/zeebox/id454689266?ls=1&amp;mt=8">here</a> and the US version <a href="http://itunes.apple.com/us/app/zeebox/id513267737?ls=1&amp;mt=8">here</a>.</p>
 ]]></content>
   </entry>
   
@@ -577,7 +577,7 @@ which I called ELTestRemoteViewController. For simplicity I created a simple vie
     <link href="http://lyonanderson.github.com/blog/2012/09/26/facebook-hack-2012-london-winners/"/>
     <updated>2012-09-26T21:40:00+01:00</updated>
     <id>http://lyonanderson.github.com/blog/2012/09/26/facebook-hack-2012-london-winners</id>
-    <content type="html"><![CDATA[<p>Last Friday I went to the Facebook London Hack 2012 with <a href="https://twitter.com/mattjgalloway">Matt</a>, <a href="https://twitter.com/michaelslater">Michael</a>, <a href="https://twitter.com/netproteus">Will</a> and <a href="https://twitter.com/stephenoldham">Steve</a>. Matt&#8217;s written a nice explanation of what we did on his <a href="http://www.galloway.me.uk/2012/09/facebook-world-hack-london-winners/">blog</a>. In a nutshell we made a Silent Disco Flashmob app called Flash Dance. We had a great time, met lots of cool people and worked in a camper van tent. Even better, we won best overall hack!</p>
+    <content type="html"><![CDATA[<p>Last Friday I went to the Facebook London Hack 2012 with <a href="https://twitter.com/mattjgalloway">Matt</a>, <a href="https://twitter.com/michaelslater">Michael</a>, <a href="https://twitter.com/netproteus">Will</a> and <a href="https://twitter.com/stephenoldham">Steve</a>. Matt&rsquo;s written a nice explanation of what we did on his <a href="http://www.galloway.me.uk/2012/09/facebook-world-hack-london-winners/">blog</a>. In a nutshell we made a Silent Disco Flashmob app called Flash Dance. We had a great time, met lots of cool people and worked in a camper van tent. Even better, we won best overall hack!</p>
 
 <p><img src="http://lyonanderson.github.com/images/IMG_4032.JPG" alt="" /></p>
 ]]></content>
