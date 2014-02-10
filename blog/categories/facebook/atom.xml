@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Facebook | Christopher Anderson]]></title>
-  <link href="http://lyonanderson.com/blog/categories/facebook/atom.xml" rel="self"/>
-  <link href="http://lyonanderson.com/"/>
-  <updated>2014-02-10T15:58:12+00:00</updated>
-  <id>http://lyonanderson.com/</id>
+  <link href="http://lyonanderson.org/blog/categories/facebook/atom.xml" rel="self"/>
+  <link href="http://lyonanderson.org/"/>
+  <updated>2014-02-10T16:00:37+00:00</updated>
+  <id>http://lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Facebook Hack 2012 London Winners]]></title>
-    <link href="http://lyonanderson.com/blog/2012/09/26/facebook-hack-2012-london-winners/"/>
+    <link href="http://lyonanderson.org/blog/2012/09/26/facebook-hack-2012-london-winners/"/>
     <updated>2012-09-26T21:40:00+01:00</updated>
-    <id>http://lyonanderson.com/blog/2012/09/26/facebook-hack-2012-london-winners</id>
+    <id>http://lyonanderson.org/blog/2012/09/26/facebook-hack-2012-london-winners</id>
     <content type="html"><![CDATA[<p>Last Friday I went to the Facebook London Hack 2012 with <a href="https://twitter.com/mattjgalloway">Matt</a>, <a href="https://twitter.com/michaelslater">Michael</a>, <a href="https://twitter.com/netproteus">Will</a> and <a href="https://twitter.com/stephenoldham">Steve</a>. Matt's written a nice explanation of what we did on his <a href="http://www.galloway.me.uk/2012/09/facebook-world-hack-london-winners/">blog</a>. In a nutshell we made a Silent Disco Flashmob app called Flash Dance. We had a great time, met lots of cool people and worked in a camper van tent. Even better, we won best overall hack!</p>
 
 <p><img src="/images/IMG_4032.JPG" alt="" /></p>
