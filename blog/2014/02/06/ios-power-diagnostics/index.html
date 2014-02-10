@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS Diagnostics - Musings of LyonAnderson</title>
+  <title>iOS Diagnostics - Christopher Anderson</title>
   <meta name="author" content="Christopher Lyon Anderson">
 
   
-  <meta name="description" content="I&rsquo;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of &hellip;">
+  <meta name="description" content="I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,10 +18,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lyonanderson.github.com/blog/2014/02/06/ios-power-diagnostics">
+  <link rel="canonical" href="http://lyonanderson.com/blog/2014/02/06/ios-power-diagnostics">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Musings of LyonAnderson" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Christopher Anderson" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -51,7 +51,7 @@
 				<header>
 					<img src="/images/el-logo.png" alt="Electric Labs " title="Electric Labs" >
 <hgroup>
-  <h1><a href="/">Musings of LyonAnderson</a></h1>
+  <h1><a href="/">Christopher Anderson</a></h1>
   
     <h2 class="subtitle">Stuff I Find Interesting</h2>
    
@@ -100,25 +100,25 @@
   </header>
 
 
-<div class="entry-content"><p>I&rsquo;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&rsquo;ll be greeted with a screen asking you for a ticket number:</p>
+<div class="entry-content"><p>I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&#8217;ll be greeted with a screen asking you for a ticket number:</p>
 
 <p><img src="/images/IMG_9491.PNG" alt="Screenshot" /></p>
 
-<p>Where do you get a ticket number from? You could go to the genius bar, but there is an easier way. We can use a a man-in-the-middle proxy and spoof iOS Diagnostics into thinking it has a valid ticket. I decided to use <a href="http://mitmproxy.org">mitmproxy</a> as it supports https and can be scripted. I&rsquo;ve made a mitmproxy script that you can use to spoof iOS Diagnostics and capture the payload that would be sent to Apple. So let&rsquo;s being.</p>
+<p>Where do you get a ticket number from? You could go to the genius bar, but there is an easier way. We can use a a man-in-the-middle proxy and spoof iOS Diagnostics into thinking it has a valid ticket. I decided to use <a href="http://mitmproxy.org">mitmproxy</a> as it supports https and can be scripted. I&#8217;ve made a mitmproxy script that you can use to spoof iOS Diagnostics and capture the payload that would be sent to Apple. So let&#8217;s being.</p>
 
-<p>When started iOS Diagnostics makes a request to <a href="https://iosdiags.apple.com/ios/TestConfiguration/1.2">https://iosdiags.apple.com/ios/TestConfiguration/1.2</a> to find out what diagnostics are available for your device. The response is a plist containing a dictionary keyed on device type mapping to an array of diagnostic types. The only value I&rsquo;ve seen is powerDiagnostics. A quick poke around in the binary seems to confirm this is the only accepted value at the moment. If your device type matches you&rsquo;ll be offered &lsquo;Extended Tests&rsquo;. Currently Apple only seems to offer this for iPhones and not iPads. However, I&rsquo;ve been able to get extended diagnostics from an iPad too. You&rsquo;ll need to edit XML_OK_RESPONSE to include your device type, if you want the more detailed power logs.</p>
+<p>When started iOS Diagnostics makes a request to <a href="https://iosdiags.apple.com/ios/TestConfiguration/1.2">https://iosdiags.apple.com/ios/TestConfiguration/1.2</a> to find out what diagnostics are available for your device. The response is a plist containing a dictionary keyed on device type mapping to an array of diagnostic types. The only value I&#8217;ve seen is powerDiagnostics. A quick poke around in the binary seems to confirm this is the only accepted value at the moment. If your device type matches you&#8217;ll be offered &#8216;Extended Tests&#8217;. Currently Apple only seems to offer this for iPhones and not iPads. However, I&#8217;ve been able to get extended diagnostics from an iPad too. You&#8217;ll need to edit XML_OK_RESPONSE to include your device type, if you want the more detailed power logs.</p>
 
-<p>If you now enter a ticket number &ndash; the script expects 123456 &ndash; and press Extended Tests, iOS Diagnostics will make a request to <a href="https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456">https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456</a>. If you don&rsquo;t have a valid ticket Apple will politely responds with a not authorised 401. Our script is going to responsd with a 200 and the same body we used before. It appears as though any positive response is good. Next comes the good stuff. iOS Diagnostics will now perform two uploads. First to <a href="https://iosdiags.apple.com/MR3Server/MR3Post">https://iosdiags.apple.com/MR3Server/MR3Post</a> and then, if you choose extended test, to <a href="https://iosdiags.apple.com/ios/log/extendedUpload">https://iosdiags.apple.com/ios/log/extendedUpload</a>.</p>
+<p>If you now enter a ticket number - the script expects 123456 - and press Extended Tests, iOS Diagnostics will make a request to <a href="https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456">https://iosdiags.apple.com/MR3Server/ValidateTicket?ticket_number=123456</a>. If you don&#8217;t have a valid ticket Apple will politely responds with a not authorised 401. Our script is going to responsd with a 200 and the same body we used before. It appears as though any positive response is good. Next comes the good stuff. iOS Diagnostics will now perform two uploads. First to <a href="https://iosdiags.apple.com/MR3Server/MR3Post">https://iosdiags.apple.com/MR3Server/MR3Post</a> and then, if you choose extended test, to <a href="https://iosdiags.apple.com/ios/log/extendedUpload">https://iosdiags.apple.com/ios/log/extendedUpload</a>.</p>
 
-<p>To get started download and install <a href="http://mitmproxy.org/">mitmproxy</a> and download the script <a href="downloads/capture.py">here</a>. As iOS diagnostics uses https you&rsquo;ll need to install the mitmproxy CA on your device. You can find instructions <a href="http://mitmproxy.org/doc/ssl.html">here</a>. You can start the command line version of mitmproxy &ndash; mitmdump &ndash; like so:</p>
+<p>To get started download and install <a href="http://mitmproxy.org/">mitmproxy</a> and download the script <a href="downloads/capture.py">here</a>. As iOS diagnostics uses https you&#8217;ll need to install the mitmproxy CA on your device. You can find instructions <a href="http://mitmproxy.org/doc/ssl.html">here</a>. You can start the command line version of mitmproxy - mitmdump - like so:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>mitmdump -e -s capture.py </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You&rsquo;ll then need to set your proxy in the wifi settings on your iOS device to the IP address of your machine running the proxy. The default port is 8080. Once you&rsquo;re all configured go to Safari and go to <strong>diags://</strong> Enter <strong>123456</strong> as the ticket number and select Extended Tests. After a short time you&rsquo;ll be left with two tar.gz files containing all the good stuff.</p>
+<p>You&#8217;ll then need to set your proxy in the wifi settings on your iOS device to the IP address of your machine running the proxy. The default port is 8080. Once you&#8217;re all configured go to Safari and go to <strong>diags://</strong> Enter <strong>123456</strong> as the ticket number and select Extended Tests. After a short time you&#8217;ll be left with two tar.gz files containing all the good stuff.</p>
 
-<p>The smaller file starting with &lsquo;general&rsquo; contains logs relating to iCloud backups, memory and accessories.  The accessory logs are in the iAPEvents directory. You&rsquo;ll need to load them into Console to view them. It looks like each time a device is connected (even those connected over Bluetooth LE) an entry is written.  For example:</p>
+<p>The smaller file starting with &#8216;general&#8217; contains logs relating to iCloud backups, memory and accessories.  The accessory logs are in the iAPEvents directory. You&#8217;ll need to load them into Console to view them. It looks like each time a device is connected (even those connected over Bluetooth LE) an entry is written.  For example:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -136,7 +136,7 @@
 </span><span class='line'>Jan  9 21:35:30 Ishras-iPhone-5S iapd[149] &lt;Warning&gt;: } // End AccessoryInfo</span></code></pre></td></tr></table></div></figure>
 
 
-<p>The larger file starting with &lsquo;power&rsquo; contains all the power logs. It&rsquo;s a compressed <a href="http://en.wikipedia.org/wiki/Cpio">CPIO</a> file containing a set of compressed text files. There is one file for each day. I found over two weeks of files on my device. Each file is very detailed and on my iPhone 5s about 16mb a day. If you look inside you&rsquo;ll see lots of entries, each prefixed with a time and type. Most of if is pretty clear, here are some examples:</p>
+<p>The larger file starting with &#8216;power&#8217; contains all the power logs. It&#8217;s a compressed <a href="http://en.wikipedia.org/wiki/Cpio">CPIO</a> file containing a set of compressed text files. There is one file for each day. I found over two weeks of files on my device. Each file is very detailed and on my iPhone 5s about 16mb a day. If you look inside you&#8217;ll see lots of entries, each prefixed with a time and type. Most of if is pretty clear, here are some examples:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -174,7 +174,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>02/01/14 00:14:21 [Application] id=com.apple.mobilesafari; pid=399.00; mode=Foreground Running; reason=&lt;unknown&gt;; UIBackgroundModes=audio,continuousFallback; display_name=Safari; executable=MobileSafari; version=7.0;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>It&rsquo;s all interesting stuff. Hopefully I&rsquo;ll get some time to write scripts to extract graphs from the logs. So next time you have one of those days where the battery lasts no time, take a look in the logs and you&rsquo;ll probably be able to find the culprit!</p>
+<p>It&#8217;s all interesting stuff. Hopefully I&#8217;ll get some time to write scripts to extract graphs from the logs. So next time you have one of those days where the battery lasts no time, take a look in the logs and you&#8217;ll probably be able to find the culprit!</p>
 </div>
 
 
@@ -183,7 +183,7 @@
 
         <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2014/02/06/ios-power-diagnostics/" data-via="ishra" data-counturl="http://lyonanderson.github.com/blog/2014/02/06/ios-power-diagnostics/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.com/blog/2014/02/06/ios-power-diagnostics/" data-via="ishra" data-counturl="http://lyonanderson.com/blog/2014/02/06/ios-power-diagnostics/" >Tweet</a>
   
   
   
@@ -199,7 +199,7 @@
     <h1>Comments</h1>
     <div id="facebook_comments" aria-live="polite"><noscript>Please enable JavaScript to view the comments powered by Facebook</noscript>
 <div class="fb-comments"
-     data-href="http://lyonanderson.github.com/blog/2014/02/06/ios-power-diagnostics/"
+     data-href="http://lyonanderson.com/blog/2014/02/06/ios-power-diagnostics/"
      data-num-posts="10"
      data-width="600"
      data-colorscheme="light"></div>

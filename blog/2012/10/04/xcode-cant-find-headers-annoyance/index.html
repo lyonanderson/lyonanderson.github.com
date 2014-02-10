@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Xcode can't find headers annoyance - Musings of LyonAnderson</title>
+  <title>Xcode can't find headers annoyance - Christopher Anderson</title>
   <meta name="author" content="Christopher Lyon Anderson">
 
   
@@ -18,10 +18,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance">
+  <link rel="canonical" href="http://lyonanderson.com/blog/2012/10/04/xcode-cant-find-headers-annoyance">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Musings of LyonAnderson" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Christopher Anderson" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -51,7 +51,7 @@
 				<header>
 					<img src="/images/el-logo.png" alt="Electric Labs " title="Electric Labs" >
 <hgroup>
-  <h1><a href="/">Musings of LyonAnderson</a></h1>
+  <h1><a href="/">Christopher Anderson</a></h1>
   
     <h2 class="subtitle">Stuff I Find Interesting</h2>
    
@@ -100,7 +100,7 @@
   </header>
 
 
-<div class="entry-content"><p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&rsquo;ve cleared derived data. You&rsquo;ve checked your paths. You&rsquo;ve said 10 Hail Marys. Yes, we&rsquo;ve all been there. Last time this happened &ndash; today &ndash; I did try an old trick.</p>
+<div class="entry-content"><p>Have you ever been in the situation where all of a sudden Xcode no longer finds certain header files in your project. Another symptom is a project that builds, but there are header import errors when you open a file. You&#8217;ve cleared derived data. You&#8217;ve checked your paths. You&#8217;ve said 10 Hail Marys. Yes, we&#8217;ve all been there. Last time this happened - today - I did try an old trick.</p>
 
 <!-- more -->
 
@@ -117,20 +117,20 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.299 Xcode[70288]:  IDEIndexingClangInvocation: ---- X/Redacted.m</span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is normal. However, you&rsquo;ll probably find lines like these:</p>
+<p>This is normal. However, you&#8217;ll probably find lines like these:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>04/10/2012 15:46:50.321 Xcode[70288]:  IDEIndexingClangInvocation: [diagnostic]: Redacted.h:9:9: fatal error: 'Refacted.h' file not found
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is not normal. You&rsquo;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&rsquo;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
+<p>This is not normal. You&#8217;ll find that Redacted.h is in fact in your project. What the hell! Now you have to do some thinking. From Console.app, filter for Xcode and grab all of the lines into a text editor. Save the file, we&#8217;re going to need it.  I called mine xcodelog.txt. Now run the following command on the said file:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sed -n "s/.*fatal error: '\(.*\)' file not found.*/\1/p" xcodelog.txt  | sort | uniq</span></code></pre></td></tr></table></div></figure>
 
 
-<p>You should now have a long list of files. Here is the boring part. You&rsquo;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&rsquo;re done turn off the logging and restart Xcode:</p>
+<p>You should now have a long list of files. Here is the boring part. You&#8217;re looking for cyclic imports involving these files. Good luck with that. A common problem is a header file imported by your prefix file, then explicitly imported in another source file. You should not do this. Think carefully about your imports. When you&#8217;re done turn off the logging and restart Xcode:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>defaults delete com.apple.dt.Xcode IDEIndexingClangInvocationLogLevel</span></code></pre></td></tr></table></div></figure>
@@ -145,7 +145,7 @@
 
         <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" data-via="ishra" data-counturl="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" data-via="ishra" data-counturl="http://lyonanderson.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/" >Tweet</a>
   
   
   
@@ -161,7 +161,7 @@
     <h1>Comments</h1>
     <div id="facebook_comments" aria-live="polite"><noscript>Please enable JavaScript to view the comments powered by Facebook</noscript>
 <div class="fb-comments"
-     data-href="http://lyonanderson.github.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/"
+     data-href="http://lyonanderson.com/blog/2012/10/04/xcode-cant-find-headers-annoyance/"
      data-num-posts="10"
      data-width="600"
      data-colorscheme="light"></div>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS6 Detailed Battery Info - Musings of LyonAnderson</title>
+  <title>iOS6 Detailed Battery Info - Christopher Anderson</title>
   <meta name="author" content="Christopher Lyon Anderson">
 
   
-  <meta name="description" content="I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&rsquo;ve put together a quick &hellip;">
+  <meta name="description" content="I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&#8217;ve put together a quick &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,10 +18,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info">
+  <link rel="canonical" href="http://lyonanderson.com/blog/2012/09/27/ios6-detailed-battery-info">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Musings of LyonAnderson" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Christopher Anderson" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -51,7 +51,7 @@
 				<header>
 					<img src="/images/el-logo.png" alt="Electric Labs " title="Electric Labs" >
 <hgroup>
-  <h1><a href="/">Musings of LyonAnderson</a></h1>
+  <h1><a href="/">Christopher Anderson</a></h1>
   
     <h2 class="subtitle">Stuff I Find Interesting</h2>
    
@@ -100,14 +100,14 @@
   </header>
 
 
-<div class="entry-content"><p>I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&rsquo;ve put together a quick and dirty app which displays most of the interesting stuff. You can get it on github <a href="https://github.com/lyonanderson/BatteryInfo">here</a>. Being ever so fashionable I only support iOS6. Plus, it doesn&rsquo;t work on iOS5!</p>
+<div class="entry-content"><p>I was poking around in the iOS6 private frameworks over the weekend and found some interesting battery related stuff. I&#8217;ve put together a quick and dirty app which displays most of the interesting stuff. You can get it on github <a href="https://github.com/lyonanderson/BatteryInfo">here</a>. Being ever so fashionable I only support iOS6. Plus, it doesn&#8217;t work on iOS5!</p>
 
 <p><img src="/images/IMG_4055.png" alt="Screenshot" /></p>
 
 <!-- more -->
 
 
-<p>Delving deeper, there is a class called OSDBattery which exposes battery metrics including the battery cycle count and serial number.  Looking at the <a href="https://github.com/nst/iOS-Runtime-Headers/">header dump</a> of iOS6 shows OSDBattery in the FactoryDiags framework. However, on device you won&rsquo;t find this framework. Instead, you need to load the GAIA framework to use OSDBattery. So for example, to get the battery cycle count:</p>
+<p>Delving deeper, there is a class called OSDBattery which exposes battery metrics including the battery cycle count and serial number.  Looking at the <a href="https://github.com/nst/iOS-Runtime-Headers/">header dump</a> of iOS6 shows OSDBattery in the FactoryDiags framework. However, on device you won&#8217;t find this framework. Instead, you need to load the GAIA framework to use OSDBattery. So for example, to get the battery cycle count:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -128,7 +128,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>It goes without saying that you can&rsquo;t submit an app using this code! It&rsquo;s a private framework. Don&rsquo;t be an idiot.  I&rsquo;m not sure how useful all of this is. I&rsquo;d quite like to run the app on a refurbished device to see what is says. I&rsquo;m also not clear as to where exactly the count is stored i.e. in the battery or on device. Maybe the <a href="http://www.ifixit.com">iFixit</a> guys can swap batteries in a device and let me know?</p>
+<p>It goes without saying that you can&#8217;t submit an app using this code! It&#8217;s a private framework. Don&#8217;t be an idiot.  I&#8217;m not sure how useful all of this is. I&#8217;d quite like to run the app on a refurbished device to see what is says. I&#8217;m also not clear as to where exactly the count is stored i.e. in the battery or on device. Maybe the <a href="http://www.ifixit.com">iFixit</a> guys can swap batteries in a device and let me know?</p>
 </div>
 
 
@@ -137,7 +137,7 @@
 
         <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info/" data-via="ishra" data-counturl="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lyonanderson.com/blog/2012/09/27/ios6-detailed-battery-info/" data-via="ishra" data-counturl="http://lyonanderson.com/blog/2012/09/27/ios6-detailed-battery-info/" >Tweet</a>
   
   
   
@@ -153,7 +153,7 @@
     <h1>Comments</h1>
     <div id="facebook_comments" aria-live="polite"><noscript>Please enable JavaScript to view the comments powered by Facebook</noscript>
 <div class="fb-comments"
-     data-href="http://lyonanderson.github.com/blog/2012/09/27/ios6-detailed-battery-info/"
+     data-href="http://lyonanderson.com/blog/2012/09/27/ios6-detailed-battery-info/"
      data-num-posts="10"
      data-width="600"
      data-colorscheme="light"></div>
