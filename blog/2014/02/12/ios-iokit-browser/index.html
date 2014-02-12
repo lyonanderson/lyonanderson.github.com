@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Facebook - Christopher Anderson</title>
+  <title>iOS IOKit Browser - Christopher Anderson</title>
   <meta name="author" content="Christopher Lyon Anderson">
 
   
-  <meta name="description" content="Category: Facebook">
+  <meta name="description" content="On OS X there is a tool called ioreg that lets you dump out the contents of your I/O Kit registry. On OS X and iOS the I/O Registry contains a wealth &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.lyonanderson.orgblog/categories/facebook">
+  <link rel="canonical" href="http://www.lyonanderson.org/blog/2014/02/12/ios-iokit-browser">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Christopher Anderson" type="application/atom+xml">
@@ -46,9 +46,9 @@
  
 <meta property="fb:app_id" content="465715510117590" />
   
-  <meta property="og:title" content="Category: Facebook" />
+  <meta property="og:title" content="iOS IOKit Browser" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="http://www.lyonanderson.orgblog/categories/facebook/index.html" />
+  <meta property="og:url" content="http://www.lyonanderson.org/blog/2014/02/12/ios-iokit-browser/" />
   <meta property="og:image" content="http://www.lyonanderson.org/images/avatar.png" />
   <meta property="og:author" content="http://lyonanderson.org />
   
@@ -85,92 +85,78 @@
     	<section class="right">
     		<div class="inner-right">
     			<div id="posts">
-    			  	<div>
-<article role="article">
-  
+    			  	<article class="post">
+    
   <header>
-    <h1 class="entry-title">Category: Facebook</h1>
+    
+      <h1 class="entry-title">iOS IOKit Browser</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-12T09:12:00+00:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>On OS X there is a tool called <a href="https://developer.apple.com/library/mac/documentation/darwin/reference/manpages/man8/ioreg.8.html">ioreg</a> that lets you dump out the contents of your I/O Kit registry. On OS X and iOS the I/O Registry contains a wealth of information about the hardware connected to your device. If you want to write device drivers then you&#8217;d have to get your hands dirty with IOKit. If you fancy some bedtime reading there is more information <a href="https://developer.apple.com/library/mac/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/Introduction/Introduction.html#//apple_ref/doc/uid/TP0000011-CH204-TPXREF101">here</a>.</p>
 
-  
-  <h2>2012</h2>
+<p>I thought it would be interesting to see what I could get out of IOKit on iOS. Fortunately, Apple provide the source to <a href="http://opensource.apple.com/source/IOKitTools/IOKitTools-89.1.1/ioreg.tproj/ioreg.c">ioreg</a>.
+So I made a little iOS app based around ioreg. Of course, IOKit is a private API on iOS and our app will be running inside of the Sandbox. That said, there is a wealth of information available. You can drill down into the I/O Registry tree and you can search too. It&#8217;s pretty quick and dirty and looks like this:</p>
 
-<article>
-  
-<h1><a href="/blog/2012/09/26/facebook-hack-2012-london-winners/">Facebook Hack 2012 London Winners</a></h1>
-<time datetime="2012-09-26T21:40:00+01:00" pubdate><span class='month'>Sep</span> <span class='day'>26</span> <span class='year'>2012</span></time>
+<p><img src="/images/IMG_0005.PNG" alt="Screenshot" />&nbsp;&nbsp;
+<img src="/images/IMG_0006.PNG" alt="Screenshot" /></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/facebook/'>Facebook</a></span>
-</footer>
+<br/><br/>
+
+
+<p><img src="/images/IMG_0007.PNG" alt="Screenshot" />&nbsp;&nbsp;
+<img src="/images/IMG_0008.PNG" alt="Screenshot" /></p>
+
+<p>You can grab the source on <a href="https://github.com/lyonanderson/IOKitBrowser">github</a></p>
+</div>
 
 
 </article>
 
+
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.lyonanderson.org/blog/2014/02/12/ios-iokit-browser/" data-via="ishra" data-counturl="http://www.lyonanderson.org/blog/2014/02/12/ios-iokit-browser/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
 
-  
-</article>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/02/12/ios-iokit-browser/">iOS IOKit Browser</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/06/ios-power-diagnostics/">iOS Diagnostics</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/failing-to-make-ios6-remote-view-controllers/">(Failing to) Make iOS6 Remote View Controllers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/04/xcode-cant-find-headers-annoyance/">Xcode Can't Find Headers Annoyance</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/01/typescript/">TypeScript</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("ishra", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/ishra" class="twitter-follow-button" data-show-count="false">Follow @ishra</a>
-  
-</section>
 
 
 
 
+  <section>
+    <h1>Comments</h1>
+    <div id="facebook_comments" aria-live="polite"><noscript>Please enable JavaScript to view the comments powered by Facebook</noscript>
+<div class="fb-comments"
+     data-href="http://www.lyonanderson.org/blog/2014/02/12/ios-iokit-browser/"
+     data-num-posts="10"
+     data-width="600"
+     data-colorscheme="light"></div>
+  </section>
 
-  
-</aside>
 
 
     			</div>
