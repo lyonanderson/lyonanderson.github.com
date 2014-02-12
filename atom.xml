@@ -4,7 +4,7 @@
   <title><![CDATA[Christopher Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-02-12T09:26:29+00:00</updated>
+  <updated>2014-02-12T09:29:31+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -21,12 +21,12 @@
     <content type="html"><![CDATA[<p>On OS X there is a tool called <a href="https://developer.apple.com/library/mac/documentation/darwin/reference/manpages/man8/ioreg.8.html">ioreg</a> that lets you dump out the contents of your I/O Kit registry. On OS X and iOS the I/O Registry contains a wealth of information about the hardware connected to your device. If you want to write device drivers then you&#8217;d have to get your hands dirty with IOKit. If you fancy some bedtime reading there is more information <a href="https://developer.apple.com/library/mac/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/Introduction/Introduction.html#//apple_ref/doc/uid/TP0000011-CH204-TPXREF101">here</a>.</p>
 
 <p>I thought it would be interesting to see what I could get out of IOKit on iOS. Fortunately, Apple provide the source to <a href="http://opensource.apple.com/source/IOKitTools/IOKitTools-89.1.1/ioreg.tproj/ioreg.c">ioreg</a>.
-So I made a little iOS app based around ioreg. Of course, IOKit is a private API on iOS and our app will be running inside of the Sandbox. That said, there is a wealth of information available. You can drill down into the I/O Registry tree and you can search too. It&#8217;s pretty quick and dirty and looks like this:</p>
+So I made a little iOS app based around it. Of course, IOKit is a private API on iOS and our app will be running inside of the Sandbox. That said, there is a wealth of information available. You can drill down into the I/O Registry tree and you can search too. It&#8217;s pretty quick and dirty and looks like this:</p>
 
 <p><img src="http://www.lyonanderson.org/images/IMG_0005.PNG" alt="Screenshot" />&nbsp;&nbsp;
 <img src="http://www.lyonanderson.org/images/IMG_0006.PNG" alt="Screenshot" /></p>
 
-<br/><br/>
+<br/>
 
 
 <p><img src="http://www.lyonanderson.org/images/IMG_0007.PNG" alt="Screenshot" />&nbsp;&nbsp;
