@@ -4,7 +4,7 @@
   <title><![CDATA[Christopher Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-02-14T16:15:54+00:00</updated>
+  <updated>2014-02-14T16:19:50+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -116,6 +116,10 @@ So I made a little iOS app based around it. Of course, IOKit is a private API on
 
 
 <p>It&#8217;s all interesting stuff. Hopefully I&#8217;ll get some time to write scripts to extract graphs from the logs. So next time you have one of those days where the battery lasts no time, take a look in the logs and you&#8217;ll probably be able to find the culprit!</p>
+
+<h2>Update (14/2/14)</h2>
+
+<p>The link to the script is now fixed. Sorry about that.</p>
 ]]></content>
   </entry>
   
