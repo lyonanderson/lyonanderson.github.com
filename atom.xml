@@ -4,7 +4,7 @@
   <title><![CDATA[Christopher Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-02-14T16:23:38+00:00</updated>
+  <updated>2014-02-14T16:34:12+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -120,6 +120,8 @@ So I made a little iOS app based around it. Of course, IOKit is a private API on
 <h2>Update (14/2/14)</h2>
 
 <p>The link to the script is now fixed. Sorry about that.</p>
+
+<p>Remember, you&#8217;ll only get Quick Test unless your device is included in XML_OK_RESPONSE. You can get a complete list <a href="http://www.everyi.com/by-identifier/ipod-iphone-ipad-specs-by-model-identifier.html">here</a>.</p>
 ]]></content>
   </entry>
   
