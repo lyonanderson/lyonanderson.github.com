@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Christopher Anderson]]></title>
+  <title><![CDATA[Christopher Lyon Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-10-30T22:29:40+00:00</updated>
+  <updated>2014-11-05T17:44:46+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,6 +12,172 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS Diagnostics (Part 2)]]></title>
+    <link href="http://www.lyonanderson.org/blog/2014/10/05/ios-diagnostics-part-2/"/>
+    <updated>2014-10-05T17:44:00+01:00</updated>
+    <id>http://www.lyonanderson.org/blog/2014/10/05/ios-diagnostics-part-2</id>
+    <content type="html"><![CDATA[<p>Last year I <a href="http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics/">blogged</a> about getting detailed diagnostics from iOS using a proxy. With iOS 8, Apple has significantly improved the detail contained in the diagnostic dump. Gone is the text file and in comes a sqlite database containing about 100 tables. This will make analysing the data much easier. Furthermore, the tables give us a clearer indication of what data might be available. We&#8217;re going to use SQL to extract and process the data and see what we can tell. So head over to <a href="http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics/">here</a> and get your data.</p>
+
+<p>I&#8217;ve tried to detail some of the things I&#8217;ve found below. However, my real motive was to provide a way of finding out what was using draining the battery on my iOS devices. We&#8217;ve all had the scenario where we&#8217;ve not really used our devices but the battery has mysteriously run down. To this end I put together a quick python hack that generates a report from your diagnostic database. You can find the tool <a href="http://www.github.com/lyonanderosn">here</a>. I plan to add more sections in the coming months. You can find an example report <a href="http://lyonanderson.org/report.html">here</a> taken from my iPhone . In the time period shown the battery had been draining but I had not been using it. The report shows that I was getting lots of push notifications concerned with the key value store. If I connect my iPad to the Charles Proxy I can see it&#8217;s constantly posting to keyvalueservice.icloud.com presumably in response to a push notification telling it something has changed.</p>
+
+<h2>Battery Drain</h2>
+
+<p>There are two tables, <code>PLBatteryAgent_EventBackward_Battery</code>, <code>PLBatteryAgent_EventBackward_BatteryUI</code>, populated with detailed battery information. Table <code>PLBatteryAgent_EventBackward_Battery</code> contains the most detail including voltage, battery level, current, cycle count. For 5 days I have nearly 11,000 rows!</p>
+
+<p>We can extract time and level using the following SQL:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT datetime(timestamp, 'unixepoch'), Level from PLBatteryAgent_EventBackward_Battery</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can use this to make a nice graph of how batter level changes over time:</p>
+
+<p><img src="http://www.lyonanderson.org/images/batteryLevels.PNG" alt="Graph" /></p>
+
+<h2>Energy </h2>
+
+<p>There is wealth of energy diagnostic information kept by iOS. The table <code>PLIOReportAgent_EventBackward_EnergyModel</code> seems to take a snapshot of power usage broken down by CPU, DRAM, GPU, SoC Energy. Much more interesting is the table <code>PLBLMAccountingService_Aggregate_BLMAppEnergyBreakdown</code> which contains, on a per app basis, where the energy is being used.  It&#8217;s broken down into fields such as: Airdrop, AirplayMirroring , BLMEnergyDisplay, BLMEnergyGPS, BLMEnergyGPU, BLMEnergyPA_accessories, BLMEnergyPA_apsd, BLMEnergyWiFi, BLMEnergyTorch. Samples appear to be on an hourly and daily basis. I would imagine this table is used to populate the energy breakdown you can get in the Settings.app. This really is a treasure trove! For example, you can tell which apps used location in the background. The times are on hour boundaries:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT datetime(timestamp, 'unixepoch') AS TIME, BLMAppName FROM PLBLMAccountingService_Aggregate_BLMAppEnergyBreakdown WHERE BLMEnergy_BackgroundLocation &gt; 0  ORDER BY TIME</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These tables are a good place to see which apps and internal processes are using power. Note that some of the columns always seem to be 0. You can see overall energy per app per day:</p>
+
+<p>SELECT datetime(timestamp, &#8216;unixepoch&#8217;) AS TIME, BLMAppName, BLMEnergy FROM PLBLMAccountingService_Aggregate_BLMAppEnergyBreakdown WHERE
+timeInterval=&#8217;3600&#8217;
+ORDER BY TIME</p>
+
+<p>When the device was sleeping and awake:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT  datetime(timestamp, 'unixepoch') AS Time, * FROM PLSleepWakeAgent_EventForward_PowerState</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Audio</h2>
+
+<p>The are several tables concerned with audio: <code>PLAudioAgent_EventPoint_AudioApp</code>, <code>PLAudioAgent_EventForward_Output</code>, <code>PLAudioAgent_EventForward_Routing</code>, <code>PLAudioAgent_EventPoint_AudioApp</code>. The following SQL shows you when you had headphones connected and broadly what kind of audio was coming out (Audio/Video, Call, Ringtone etc)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT datetime(timestamp, 'unixepoch') AS TIME, OutputCategory FROM  PLAudioAgent_EventForward_Routing WHERE HeadphonesConnected</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Camera</h2>
+
+<p>There are three tables concerned with the camera: <code>PLCameraAgent_EventForward_BackCamera</code>, <code>PLCameraAgent_EventForward_FrontCamera</code>, and <code>PLCameraAgent_EventForward_Torch</code>  The following SQL will show you when the back camera was on:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT datetime(timestamp, 'unixepoch') AS TIME FROM  PLCameraAgent_EventForward_BackCamera WHERE State = 1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can do a similar thing for the front camera and the torch/flash.</p>
+
+<h2>Core Location</h2>
+
+<p>iOS keeps track of which apps ask for location and how long they use it for, and the desired accuracy. <em>Note the actual location is not recorded!</em>  The following SQL will show you the total number of location requests per client.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT Client, COUNT(Client) AS Count FROM PLLocationAgent_EventForward_ClientStatus GROUP BY Client ORDER BY Count DESC</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The biggest user for me was <code>com.apple.locationd.bundle-/System/Library/LocationBundles/Routine.bundle</code> which belongs to the process <code>routined</code>. I think <code>routined</code> is the frequent locations service i.e. the one that tells you in notification centre how long it will take to get home. You can see what&#8217;s being stored by looking in frequent locations in Settings -> Privacy -> Location -> System -> Frequent Locations.</p>
+
+<h2>Push Notifications</h2>
+
+<p>It would appear iOS logs when each push notification arrives. This includes the silent background ones too. It includes which push server you were connected to, and whether you were on Wifi on Cellular. There appears to be a priority fields, but I&#8217;m not sure what that&#8217;s used for. The following SQL will show you the total number of push notifications per app/service (Apple refers to these as topics)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT Topic, COUNT(Topic) AS Count FROM PLXPCAgent_EventPoint_Apsd GROUP BY Topic ORDER BY Count DESC</span></code></pre></td></tr></table></div></figure>
+
+
+<p>My biggest hitter was <code>com.me.keyvalueservice</code> followed by <code>com.apple.madrid</code>. You can break down the data in terms of the number of push notifications in a given period. To see number of push notifications on an hourly basis:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT T, COUNT(T) AS Count FROM (SELECT strftime('%Y-%m-%d %H:00', datetime(timestamp, 'unixepoch')) as T FROM PLXPCAgent_EventPoint_Apsd) GROUP BY T</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Application Usage</h2>
+
+<p>See when apps are doing some background processing:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT datetime(timestamp, 'unixepoch') AS Time, Identifier, DisplayName from  PLApplicationAgent_EventNone_ApplicationMetaData, PLApplicationAgent_EventNone_ApplicationMetaData_Array_UIBackgroundModes
+</span><span class='line'>where PLApplicationAgent_EventNone_ApplicationMetaData_Array_UIBackgroundModes.fk_id = PLApplicationAgent_EventNone_ApplicationMetaData.id GROUP BY Time, Identifier</span></code></pre></td></tr></table></div></figure>
+
+
+<p>See how many times each application has performed different kinds of background activity (e.g. location, audio, fetch etc):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT identifier, value, count(value) as Count from  PLApplicationAgent_EventPoint_Application, PLApplicationAgent_EventNone_ApplicationMetaData_Array_UIBackgroundModes
+</span><span class='line'>where PLApplicationAgent_EventNone_ApplicationMetaData_Array_UIBackgroundModes.fk_id = PLApplicationAgent_EventPoint_Application.id
+</span><span class='line'>group by Identifier, value</span></code></pre></td></tr></table></div></figure>
+
+
+<p>iOS appears to sample how much processing time each process gets. The sample length seems vary from sample to sample:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT  value, processname, datetime(timestamp, 'unixepoch') AS Start, datetime(timestampEnd, 'unixepoch') AS End  FROM PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval_Dynamic, PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval WHERE PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval.ID = PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval_Dynamic.FK_ID
+</span><span class='line'>GROUP BY timestamp, timestampEnd,processname</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or see the total processing time for each process:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT  SUM(value) AS TotalTime, processname FROM PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval_Dynamic, PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval WHERE PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval.ID = PLProcessMonitorAgent_EventInterval_ProcessMonitorInterval_Dynamic.FK_ID
+</span><span class='line'>GROUP BY processname ORDER BY TotalTime DESC</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Radio</h2>
+
+<p>The table <code>PLBBAgent_EventPoint_TelephonyActivity</code> keeps track of how much signal you have (including the number of bars), whether you are in a call, and if you&#8217;re on LTE, 3G, 2G and if airplane mode is active. There is another table, <code>PLBBAgent_EventPoint_TelephonyRegistration</code> which details which operator you are connected too.</p>
+
+<p>The following SQL will show you your signal strength at each recorded time point:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT timestamp, signalstrength from PLBBAgent_EventPoint_TelephonyActivity</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Display</h2>
+
+<p>The table <code>PLDisplayAgent_EventForward_Display</code> contains detailed recordings of your screen metrics including brightness and how much current is being used. Another table <code>PLDisplayAgent_EventPoint_UserBrightness</code> seems to record when you override the brightness manually.</p>
+
+<h2>Power Assertions</h2>
+
+<p>Find out the different kinds of power assertions:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT AssertType FROM PLPowerAssertionAgent_EventInterval_Assertion GROUP BY AssertType</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I had the following: <code>AssertionStorm</code>, <code>BackgroundTask</code>, <code>EnableIdleSleep</code>, <code>InternalPreventDisplaySleep</code>, <code>NoIdleSleepAssertion</code>, <code>PreventUserIdleDisplaySleep</code>. <code>PreventUserIdleSystemSleep</code>
+, <code>SystemIsActive</code></p>
+
+<p>Find assertions relating to background tasks. The assertion will often contain the name of them method being called:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT  datetime(timestamp, 'unixepoch') AS Start,  datetime(timestampEnd, 'unixepoch') AS End, timestampEnd - timestamp AS time, * FROM PLPowerAssertionAgent_EventInterval_Assertion WHERE  AssertName LIKE '%BKNewProcess%' ORDER BY start</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>UIKit</h2>
+
+<p>There appears to be some tables concerned with internal UIKit stuff: <code>PLXPCAgent_EventForward_UIKitActivity</code>, <code>PLXPCAgent_EventForward_UIKitAlert</code>, and <code>PLXPCAgent_EventForward_UIKitKeyboard</code>. The table <code>PLXPCAgent_EventForward_UIKitKeyboard</code> appear to show when the keyboard is shown. It also includes which keyboard was used:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT datetime(timestamp, 'unixepoch') AS TIME, Keyboard-ID FROM  PLXPCAgent_EventForward_UIKitKeyboard WHERE Status = 1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Conclusions</h2>
+
+<p>Overall, I think the fact that Apple is collecting these kinds of metrics is good thing. It will allow them to better understand how customers are using their devices, and thus draining their batteries. I assume that this data is only harvested when you go to the genius bar and they run through the diagnostics app with you. However, I could be wrong and it could be part of the standard Diagnostics and Usage data collections.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS IOKit Browser]]></title>
