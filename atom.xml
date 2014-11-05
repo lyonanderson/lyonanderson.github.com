@@ -4,7 +4,7 @@
   <title><![CDATA[Christopher Lyon Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-11-05T18:01:52+00:00</updated>
+  <updated>2014-11-05T18:08:47+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -34,7 +34,7 @@
 
 <p>We can use this to make a nice graph of how batter level changes over time:</p>
 
-<p><img src="http://www.lyonanderson.org/images/batteryLevels.PNG" alt="Graph" /></p>
+<p><img src="http://www.lyonanderson.org/images/batteryLevels.png" alt="Graph" /></p>
 
 <h2>Energy </h2>
 
