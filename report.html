@@ -1,0 +1,274 @@
+<html>
+		<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.css">
+
+		<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				 $('#energyBreakdown').DataTable( {
+        			"responsive": true,
+        			"order": [[ 5, "desc" ]]
+    			});
+				$('#processBreakdown').DataTable( {
+        			"responsive": true,
+        			"order": [[ 1, "desc" ]]
+    			});
+				$('#notificationBreakdown').DataTable( {
+        			"responsive": true,
+        			"order": [[ 1, "desc" ]]
+    			});
+				$('#locationBreakdown').DataTable( {
+        			"responsive": true,
+        			"order": [[ 2, "desc" ]]
+    			});
+			});
+		</script>
+
+		<body>
+			<div class="container">
+			<h1>Energy Report - 2014-11-04 06:34 to 2014-11-04 18:08<h1>
+
+			<h2>Overall Metrics</h2>
+			<table  class="table table-striped table-bordered display responsive">
+									<tbody>
+										<tr><td>Display active for 0:33:44.129484</td></tr>
+										<tr><td>Device active for 7:42:52.084030</td></tr>
+									</tbody>
+								</table>
+						
+
+			<h2>Process time breakdown</h2>
+			<table id="processBreakdown" class="table table-striped table-condensed">
+								<thead>
+								<tr>
+									<td class="col-md-3">Process Name</td>
+									<td>Time (s)</td>
+								</tr>
+								</thead>
+								<tbody><tr><td>kernel_task</td><td>1056.33644559</td></tr>
+<tr><td>syncdefaultsd</td><td>916.240664316</td></tr>
+<tr><td>aggregated</td><td>858.127528561</td></tr>
+<tr><td>backboardd</td><td>628.346150875</td></tr>
+<tr><td>discoveryd</td><td>515.622202398</td></tr>
+<tr><td>CommCenter</td><td>459.529212862</td></tr>
+<tr><td>recentsd</td><td>335.334068356</td></tr>
+<tr><td>locationd</td><td>310.702729965</td></tr>
+<tr><td>SpringBoard</td><td>278.21465325</td></tr>
+<tr><td>wifid</td><td>255.191732764</td></tr>
+<tr><td>configd</td><td>219.152668476</td></tr>
+<tr><td>UserEventAgent</td><td>173.389841525</td></tr>
+<tr><td>syslogd</td><td>129.222401408</td></tr>
+<tr><td>mediaserverd</td><td>122.133012237</td></tr>
+<tr><td>networkd</td><td>115.737740807</td></tr>
+<tr><td>Spotify</td><td>84.25965186</td></tr>
+<tr><td>dataaccessd</td><td>84.064280997</td></tr>
+<tr><td>coreduetd</td><td>76.032116998</td></tr>
+<tr><td>apsd</td><td>66.743533501</td></tr>
+<tr><td>MobileMail</td><td>51.890492201</td></tr>
+<tr><td>MobileSMS</td><td>44.458946878</td></tr>
+<tr><td>Tweetbot</td><td>33.967904393</td></tr>
+<tr><td>Unread</td><td>23.271051379</td></tr>
+<tr><td>nsurlsessiond</td><td>21.211954914</td></tr>
+<tr><td>securityd</td><td>18.732810866</td></tr>
+<tr><td>ReadItLaterPro</td><td>16.780669666</td></tr>
+<tr><td>AppStore</td><td>16.505243638</td></tr>
+<tr><td>itunesstored</td><td>14.690747761</td></tr>
+<tr><td>assetsd</td><td>9.788721997</td></tr>
+<tr><td>Apple Store</td><td>9.175215627</td></tr>
+<tr><td>BBCiPlayerDRM-P</td><td>7.293142689</td></tr>
+<tr><td>calaccessd</td><td>5.090995953</td></tr>
+<tr><td>nehelper</td><td>4.967826418</td></tr>
+<tr><td>assistant_servi</td><td>4.940779579</td></tr>
+<tr><td>lockdownd</td><td>4.549376031</td></tr>
+<tr><td>MobileCal</td><td>4.111920381</td></tr>
+<tr><td>MobileSlideShow</td><td>3.955656425</td></tr>
+<tr><td>installd</td><td>3.914950313</td></tr>
+<tr><td>cloudd</td><td>3.297398145</td></tr>
+<tr><td>com.apple.Strea</td><td>2.507206867</td></tr>
+<tr><td>tccd</td><td>2.167402639</td></tr>
+<tr><td>ContainerMetada</td><td>2.080561277</td></tr>
+<tr><td>wirelessproxd</td><td>1.843048851</td></tr>
+<tr><td>Preferences</td><td>1.822990831</td></tr>
+<tr><td>FindMyFriends</td><td>1.806446019</td></tr>
+<tr><td>BTServer</td><td>1.688130474</td></tr>
+<tr><td>MessagesNotific</td><td>1.545892003</td></tr>
+<tr><td>searchd</td><td>1.222582854</td></tr>
+<tr><td>powerd</td><td>0.177547179</td></tr>
+<tr><td>cfprefsd</td><td>0.172406558</td></tr>
+<tr><td>awdd</td><td>0.167606114</td></tr>
+</tbody>
+							</table>
+
+			<h2>Energy Usage</h2>
+			
+								<table id="energyBreakdown" class="table table-striped table-bordered display responsive">
+									<thead><tr><td>Bundle</td>
+<td>Airdrop</td>
+<td>Airplay</td>
+<td>AirplayMirroring</td>
+<td>BBCondition</td>
+<td>BLMEnergy</td>
+<td>BLMEnergyAccessory</td>
+<td>BLMEnergyAssertion</td>
+<td>BLMEnergyAudio</td>
+<td>BLMEnergyBB</td>
+<td>BLMEnergyBluetooth</td>
+<td>BLMEnergyCPU</td>
+<td>BLMEnergyDisplay</td>
+<td>BLMEnergyGPS</td>
+<td>BLMEnergyGPU</td>
+<td>BLMEnergyPA_accessories</td>
+<td>BLMEnergyPA_apsd</td>
+<td>BLMEnergyPA_assetsd</td>
+<td>BLMEnergyPA_backboardd</td>
+<td>BLMEnergyPA_cloudd</td>
+<td>BLMEnergyPA_commcenter</td>
+<td>BLMEnergyPA_discoverydBB</td>
+<td>BLMEnergyPA_discoverydWifi</td>
+<td>BLMEnergyPA_kernel_task</td>
+<td>BLMEnergyPA_locationd</td>
+<td>BLMEnergyPA_mediaserverd</td>
+<td>BLMEnergyPA_notification_display</td>
+<td>BLMEnergyPA_nsurlsessiond</td>
+<td>BLMEnergyPA_syncdefaultd</td>
+<td>BLMEnergySOC</td>
+<td>BLMEnergyTorch</td>
+<td>BLMEnergyWiFi</td>
+<td>BLMEnergyWiFiLocationScan</td>
+<td>BLMEnergyWiFiPipelineScan</td>
+<td>BLMEnergy_BackgroundCPU</td>
+<td>BLMEnergy_BackgroundLocation</td>
+<td>background</td>
+</tr></thead>
+									<tbody><tr><td>com.me.keyvalueservice</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2671.13626757</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1572.37213909</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1098.76412848</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2671.13626757</td></tr><tr><td>syncdefaultsd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.1054273576e-15</td><td>545.053917098</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.25421698658</td><td>0.0</td><td>114.730593127</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>21.4766294622</td><td>0.0</td><td>17.0782014244</td><td>30.354639563</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>356.159636534</td><td>0.0</td><td>0.0</td><td>145.08523269</td><td>0.0</td><td>545.053917098</td></tr><tr><td>configd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>23.4295143938</td><td>329.316245021</td><td>0.0</td><td>0.0</td><td>0.0</td><td>306.729551369</td><td>0.0</td><td>13.9695405726</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.27538953744</td><td>0.0</td><td>0.0</td><td>2.52509264132</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.816670901229</td><td>0.0</td><td>0.0</td><td>16.4946332139</td><td>0.0</td><td>329.316245021</td></tr><tr><td>com.spotify.client</td><td>0.0</td><td>0.0</td><td>0.0</td><td>4.29661774785</td><td>202.892691721</td><td>0.0</td><td>6.93595763686</td><td>36.2793153597</td><td>122.199304808</td><td>0.0</td><td>15.4099680459</td><td>7.73750184298</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0961017909286</td><td>0.0</td><td>2.94627860322</td><td>0.0</td><td>0.0</td><td>4.13666333451</td><td>0.0</td><td>3.58694338944</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.56465690954</td><td>0.0</td><td>0.0</td><td>10.0231381689</td><td>0.0</td><td>94.0666066023</td></tr><tr><td>aggregated</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>133.045162921</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>105.715108062</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>27.3300548588</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>133.045162921</td><td>0.0</td><td>133.045162921</td></tr><tr><td>apsd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.5527136788e-15</td><td>105.991773323</td><td>0.0</td><td>78.0638796307</td><td>0.0</td><td>5.0551266697</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>21.9605394273</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.912227595512</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>105.991773323</td></tr><tr><td>SpringBoard</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>91.0320014665</td><td>0.0</td><td>35.8020828592</td><td>0.0</td><td>0.0</td><td>0.0</td><td>19.0953442287</td><td>29.2513716708</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.58686678556</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.29633592226</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.352079270009</td><td>0.0</td><td>30.2108741755</td></tr><tr><td>com.tapbots.Tweetbot3</td><td>0.0</td><td>0.0</td><td>0.0</td><td>33.4592699077</td><td>66.3590621625</td><td>0.0</td><td>0.0</td><td>0.0</td><td>45.2750864776</td><td>0.0</td><td>0.0</td><td>18.3236019876</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.4549477357</td><td>0.0</td><td>0.304854444587</td><td>0.0</td><td>3.23472666525e-05</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.000539169724335</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.392956972467</td></tr><tr><td>discoveryd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>57.2879264383</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>48.3676965052</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>8.92022993312</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.56745850708e-16</td><td>0.0</td><td>0.0</td><td>57.2879264383</td><td>0.0</td><td>57.2879264383</td></tr><tr><td>ScreenOff</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>54.0277176457</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.70955449287</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>51.3181631528</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>locationd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.72509862941</td><td>53.4174931728</td><td>0.0</td><td>3.73548182392</td><td>0.0</td><td>10.529501761</td><td>0.0</td><td>27.6140119943</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.69730107266</td><td>0.0</td><td>0.0</td><td>7.85036129505</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.99083522576</td><td>0.0</td><td>0.0</td><td>35.4643732894</td><td>0.0</td><td>53.4174931728</td></tr><tr><td>LockScreen</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>45.7542865966</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>35.6667759239</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.0875106727</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>com.ideashower.ReadItLaterPro</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.9901536984</td><td>41.7662416243</td><td>0.0</td><td>0.788528588252</td><td>0.0</td><td>10.9901536984</td><td>0.0</td><td>1.4655816156</td><td>13.9933420795</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.2941886176</td><td>0.0</td><td>1.50411391692</td><td>0.0</td><td>0.420797828868</td><td>0.0</td><td>0.0</td><td>0.30953527914</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.82635981173e-05</td></tr><tr><td>com.apple.mobilemail</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>35.6820249925</td><td>0.0</td><td>1.16262554436</td><td>0.0</td><td>1.05001895657</td><td>0.0</td><td>18.2239842749</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.37035731838</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>11.8750388984</td><td>0.0</td><td>0.0</td><td>21.5943415932</td><td>0.0</td><td>35.6820249925</td></tr><tr><td>com.apple.AppStore</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>35.2372535187</td><td>0.0</td><td>0.328591394526</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.84386831205</td><td>22.381968434</td><td>0.000334987979509</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.85565498779</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.46945869336</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>4.35735965822</td><td>1.70507810942e-05</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.52274852697</td></tr><tr><td>recentsd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>33.6629946524</td><td>0.0</td><td>0.222798220448</td><td>0.0</td><td>0.0</td><td>0.0</td><td>25.9456028067</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.49459362525</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>33.4401964319</td><td>0.0</td><td>33.6629946524</td></tr><tr><td>com.apple.store.Jolly</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>33.5233020735</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.38959123804</td><td>18.5429388898</td><td>1.61031352603</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.599111814121</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.687418030105</td><td>0.687281758364</td><td>0.312859895332</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>8.59608455792</td><td>0.0977023638294</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>backboardd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>21.8841206955</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.5072999879</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>20.3768207076</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>21.8841206955</td><td>0.0</td><td>21.8841206955</td></tr><tr><td>wifid</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>21.0926357906</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>17.0275871227</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>4.06504866788</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>21.0926357906</td><td>0.0</td><td>21.0926357906</td></tr><tr><td>com.apple.MobileSMS</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>19.1817987913</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.29751874206</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.8842800492</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>19.1817987913</td></tr><tr><td>uk.co.bbc.iplayer</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>19.166203685</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.12859034445</td><td>10.9230453089</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.35751693603</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.19601763286</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.56103346275</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>com.apple.mobileslideshow</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>15.8687037166</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.19545095342</td><td>11.564293763</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.675503491297</td><td>0.110454867519</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.445813023025</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.87718761837</td><td>0.0</td><td>0.0</td><td>0.145116333994</td><td>0.0</td><td>2.02230395236</td></tr><tr><td>CommCenter</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.5092266842</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.117237128238</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.391989556</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.5092266842</td><td>0.0</td><td>13.5092266842</td></tr><tr><td>com.tinyspeck.chatlyio</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.3891913859</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.27932623337</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>8.10986515253</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>13.3891913859</td></tr><tr><td>nsurlsessiond</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.8148815961</td><td>0.0</td><td>0.24927623033</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.5656053657</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.8148815961</td></tr><tr><td>IMRemoteURLConne</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.74602872641</td><td>12.0465660832</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.0150446935</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0315213896892</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>12.0465660832</td></tr><tr><td>com.facebook.Facebook</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>11.293755778</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.73122256905</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.11423164094</td><td>0.0</td><td>3.44830156797</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>11.293755778</td></tr><tr><td>geod</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.7259489736</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.5904856293</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.135463344307</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.7259489736</td></tr><tr><td>com.apple.private.alloy.phonecontinuity</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.5099696202</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.5099696202</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.5099696202</td></tr><tr><td>PoorCellCondition</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.384354311</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.384354311</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.384354311</td></tr><tr><td>com.facebook.Messenger</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.2021088373</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>4.96887994392</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.11423164094</td><td>0.0</td><td>4.11899725248</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.2021088373</td></tr><tr><td>itunesstored</td><td>0.0</td><td>0.0</td><td>0.0</td><td>4.83649375147</td><td>10.1171798704</td><td>0.0</td><td>0.0</td><td>0.0</td><td>9.80413747873</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.313042391683</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>10.1171798704</td></tr><tr><td>BTServer</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>8.47908625721</td><td>0.0</td><td>8.47908625721</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>8.47908625721</td></tr><tr><td>syslogd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.80473116362</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.3234775957</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.48125356792</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.80473116362</td><td>0.0</td><td>6.80473116362</td></tr><tr><td>UserEventAgent</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.30867157605</td><td>0.0</td><td>6.30867157605</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.30867157605</td></tr><tr><td>cloudd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.1602526441</td><td>0.0</td><td>0.151971033355</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.00828161075</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.1602526441</td></tr><tr><td>com.apple.Preferences</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.89941596041</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.81159295708</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0878230033363</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>lockdownd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.66510657089</td><td>0.0</td><td>4.42165407805</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.148399322296</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.09505317054</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.66510657089</td></tr><tr><td>searchd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.524182599</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.35688415447</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.167298444525</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>5.524182599</td></tr><tr><td>com.apple.private.alloy.bulletinboard</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.8874620573</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.93242803713</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.95503402018</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.8874620573</td></tr><tr><td>mediaserverd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.87922409746</td><td>0.0</td><td>3.33660749481</td><td>0.0</td><td>0.000158500310462</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.07145155058e-06</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.542451030882</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>3.87922409746</td></tr><tr><td>com.apple.mobileme.fmf</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.82100565409</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.64895825999</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.172047394093</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>2.82100565409</td></tr><tr><td>com.apple.videos</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.62176309839</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.55934974764</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0624133507474</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>uk.co.bbc.iplayerradio</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.42671288391</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.283322946</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.143389937911</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>com.apple.camera</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.972483412393</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.8847406337</td><td>0.0284037512543</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.00628212423914</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0110022249076</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0420546782919</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>assetsd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.90229346962</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.70251952425</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.199773945369</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.90229346962</td><td>0.0</td><td>0.90229346962</td></tr><tr><td>com.bjango.istat</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.638629075878</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.587738437908</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.05089063797</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>AssertionPID-4104</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.536009641673</td><td>0.0</td><td>0.536009641673</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.536009641673</td></tr><tr><td>gamed</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.446816577264</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.446816577264</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.446816577264</td></tr><tr><td>com.apple.mobileme.fmf1</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.380088838443</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.367578715509</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0125101229332</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>imagent</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.248161606706</td><td>0.0</td><td>0.248161606706</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.248161606706</td></tr><tr><td>com.apple.mobilephone</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.134397716929</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.131629509863</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.00276820706599</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>coreduetd</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.121116131726</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0913870009273</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0297291307984</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.121116131726</td><td>0.0</td><td>0.121116131726</td></tr><tr><td>com.apple.icloud.FMF</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.000698024080333</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.00063425451138</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.37695689529e-05</td><td>0.0</td><td>0.0</td><td>0.000698024080333</td><td>0.000698024080333</td></tr><tr><td>co.supertop.unread</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.00045699006928</td><td>0.0</td><td>0.00045699006928</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.00045699006928</td></tr><tr><td>com.apple.mobilesafari</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.000320515577252</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>1.81408479663e-05</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.000302374729286</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.000320515577252</td></tr><tr><td>AssertionPID-3919</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.71291256169e-05</td><td>0.0</td><td>7.71291256169e-05</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.71291256169e-05</td></tr><tr><td>kernel_task</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.41073868937e-15</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.41073868937e-15</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>7.41073868937e-15</td><td>0.0</td><td>7.41073868937e-15</td></tr></tbody>
+								</table>
+
+							
+
+			<h2>Notifications</h2>
+			<table id="notificationBreakdown" class="table table-striped table-condensed">
+								<thead>
+									<tr>
+									<td class="col-md-3">Topic</td>
+									<td>Number of Notifications</td>
+									</tr>
+								</thead>
+								<tbody><tr><td>com.me.keyvalueservice</td><td>3630</td></tr>
+<tr><td>com.apple.madrid</td><td>34</td></tr>
+<tr><td>com.ideashower.ReadItLaterPro</td><td>28</td></tr>
+<tr><td>com.facebook.Facebook</td><td>21</td></tr>
+<tr><td>com.tinyspeck.chatlyio</td><td>21</td></tr>
+<tr><td>com.facebook.Messenger</td><td>13</td></tr>
+<tr><td>com.apple.private.alloy.phonecontinuity</td><td>12</td></tr>
+<tr><td>com.apple.private.alloy.bulletinboard</td><td>10</td></tr>
+<tr><td>com.apple.mobileme.fmf</td><td>4</td></tr>
+<tr><td>com.apple.mediastream.subscription.push</td><td>2</td></tr>
+<tr><td>com.apple.sagad</td><td>2</td></tr>
+</tbody>
+							</table>
+
+			<h2>Core Location</h2>
+			<table id="locationBreakdown" class="table table-striped table-condensed">
+								<thead>
+									<tr>
+									<td class="col-md-3">Client</td>
+									<td>Type</td>
+									<td>Number of Requests</td>
+									</tr>
+								</thead>
+								<tbody><tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/MotionCalibration.bundle</td><td>Location</td><td>57</td></tr>
+<tr><td>com.apple.store.Jolly</td><td>BeaconRegion</td><td>7</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/AppSuggestions.bundle</td><td>Location</td><td>6</td></tr>
+<tr><td>com.apple.AppStore</td><td>Location</td><td>3</td></tr>
+<tr><td>com.apple.camera</td><td>Location</td><td>3</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/FMF.framework</td><td>Location</td><td>3</td></tr>
+<tr><td>com.getpebble.ios</td><td>Range</td><td>3</td></tr>
+<tr><td>com.naveenium.foursquare</td><td>Significant</td><td>3</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/CompassCalibration.bundle</td><td>Location</td><td>2</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/TimeZone.bundle</td><td>Location</td><td>2</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/Parsec.framework</td><td>Location</td><td>2</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/PassKitCore.framework</td><td>Fence</td><td>2</td></tr>
+<tr><td>com.apple.reminders</td><td>Fence</td><td>2</td></tr>
+<tr><td>com.evernote.iPhone.Evernote</td><td>Significant</td><td>2</td></tr>
+<tr><td>com.hailocab.HailoCustomer</td><td>Significant</td><td>2</td></tr>
+<tr><td>com.jackadam.darksky</td><td>Significant</td><td>2</td></tr>
+<tr><td>com.ookla.speedtest</td><td>Significant</td><td>2</td></tr>
+<tr><td>com.yahoo.flickr</td><td>Significant</td><td>2</td></tr>
+<tr><td>azdev.citymapper</td><td>Location</td><td>1</td></tr>
+<tr><td>co.visualsupply.cam</td><td>Location</td><td>1</td></tr>
+<tr><td>com.WahooFitness.FisicaFitness</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.Maps</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.MobileSMS</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.SiriViewService</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.compass</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/Frameworks/CoreTelephony.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/Frameworks/Social.framework/XPCServices/com.apple.facebook.xpc</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/Frameworks/Social.framework/XPCServices/com.apple.twitter.xpc</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/AppGenius.bundle</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/MapsAnnouncements.bundle</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/Routine.bundle</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/LocationBundles/Traffic.bundle</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/AssistantServices.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/FindMyDevice.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/MobileWiFi.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/Weather.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/WirelessDiagnostics.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.bundle-/System/Library/PrivateFrameworks/iAdCore.framework</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.executable-</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.locationd.executable-/System/Library/Frameworks/CoreTelephony.framework/Support/CommCenterClassic</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.mobileme.fmf1</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.mobilesafari</td><td>Location</td><td>1</td></tr>
+<tr><td>com.apple.mobileslideshow</td><td>Location</td><td>1</td></tr>
+<tr><td>com.belkin.plugin</td><td>Location</td><td>1</td></tr>
+<tr><td>com.burbn.instagram</td><td>Location</td><td>1</td></tr>
+<tr><td>com.cogitap.SlowShutter</td><td>Location</td><td>1</td></tr>
+<tr><td>com.dayonelog.dayoneiphone</td><td>Location</td><td>1</td></tr>
+<tr><td>com.dominikseibold.averagecamerapro</td><td>Location</td><td>1</td></tr>
+<tr><td>com.electriclabs.Bus-NYC</td><td>Location</td><td>1</td></tr>
+<tr><td>com.evernote.Skitch.iPad</td><td>Location</td><td>1</td></tr>
+<tr><td>com.everytrain.nationalrail</td><td>Location</td><td>1</td></tr>
+<tr><td>com.facebook.Facebook</td><td>Location</td><td>1</td></tr>
+<tr><td>com.facebook.Messenger</td><td>Location</td><td>1</td></tr>
+<tr><td>com.facebook.Slingshot</td><td>Location</td><td>1</td></tr>
+<tr><td>com.google.Maps</td><td>Location</td><td>1</td></tr>
+<tr><td>com.jeevantakhar.londonnextbus</td><td>Location</td><td>1</td></tr>
+<tr><td>com.jeffreygrossman.moviesapp</td><td>Location</td><td>1</td></tr>
+<tr><td>com.meetup.iphone</td><td>Location</td><td>1</td></tr>
+<tr><td>com.mjg.BeerMap</td><td>Location</td><td>1</td></tr>
+<tr><td>com.nike.fuelband</td><td>Significant</td><td>1</td></tr>
+<tr><td>com.nike.nikeplus-gps</td><td>Location</td><td>1</td></tr>
+<tr><td>com.omz-software.Pythonista</td><td>Location</td><td>1</td></tr>
+<tr><td>com.shazam.encore.Shazam</td><td>Location</td><td>1</td></tr>
+<tr><td>com.smugmug.cameraawesome</td><td>Location</td><td>1</td></tr>
+<tr><td>com.tapbots.Tweetbot3</td><td>Location</td><td>1</td></tr>
+<tr><td>com.thetrainline.iphone</td><td>Location</td><td>1</td></tr>
+<tr><td>com.ubercab.UberClient</td><td>Location</td><td>1</td></tr>
+<tr><td>com.vintagenoir.faded</td><td>Location</td><td>1</td></tr>
+<tr><td>jp.co.supersoftware.manga-camera</td><td>Location</td><td>1</td></tr>
+<tr><td>net.skyscanner.iphone</td><td>Location</td><td>1</td></tr>
+<tr><td>uk.co.flypay.FlyPay</td><td>Location</td><td>1</td></tr>
+<tr><td>uk.co.gbk.loyaltyapp</td><td>Location</td><td>1</td></tr>
+</tbody>
+							</table>
+
+			<h2>Signal Breakdown</h2>
+			<table id="signalBreakdown" class="table table-striped table-condensed">
+								<thead>
+									<tr>
+									<td class="col-md-3">Number of Bars</td>
+									<td>%</td>
+									</tr>
+								</thead>
+								<tbody><tr><td>1</td><td>6.0</td></tr>
+<tr><td>2</td><td>75.0</td></tr>
+<tr><td>3</td><td>11.0</td></tr>
+<tr><td>4</td><td>5.0</td></tr>
+<tr><td>5</td><td>2.0</td></tr>
+</tbody>
+							</table>
+			</div>
+		<body>
+	</html>

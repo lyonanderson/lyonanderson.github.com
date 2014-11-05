@@ -4,7 +4,7 @@
   <title><![CDATA[Christopher Lyon Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-11-05T17:44:46+00:00</updated>
+  <updated>2014-11-05T18:01:52+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.lyonanderson.org/blog/2014/10/05/ios-diagnostics-part-2</id>
     <content type="html"><![CDATA[<p>Last year I <a href="http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics/">blogged</a> about getting detailed diagnostics from iOS using a proxy. With iOS 8, Apple has significantly improved the detail contained in the diagnostic dump. Gone is the text file and in comes a sqlite database containing about 100 tables. This will make analysing the data much easier. Furthermore, the tables give us a clearer indication of what data might be available. We&#8217;re going to use SQL to extract and process the data and see what we can tell. So head over to <a href="http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics/">here</a> and get your data.</p>
 
-<p>I&#8217;ve tried to detail some of the things I&#8217;ve found below. However, my real motive was to provide a way of finding out what was using draining the battery on my iOS devices. We&#8217;ve all had the scenario where we&#8217;ve not really used our devices but the battery has mysteriously run down. To this end I put together a quick python hack that generates a report from your diagnostic database. You can find the tool <a href="http://www.github.com/lyonanderosn">here</a>. I plan to add more sections in the coming months. You can find an example report <a href="http://lyonanderson.org/report.html">here</a> taken from my iPhone . In the time period shown the battery had been draining but I had not been using it. The report shows that I was getting lots of push notifications concerned with the key value store. If I connect my iPad to the Charles Proxy I can see it&#8217;s constantly posting to keyvalueservice.icloud.com presumably in response to a push notification telling it something has changed.</p>
+<p>I&#8217;ve tried to detail some of the things I&#8217;ve found below. However, my real motive was to provide a way of finding out what was using draining the battery on my iOS devices. We&#8217;ve all had the scenario where we&#8217;ve not really used our devices but the battery has mysteriously run down. To this end I put together a quick python hack that generates a report from your diagnostic database. You can find the tool <a href="https://github.com/lyonanderson/powerAnalysis">here</a>. I plan to add more sections in the coming months. You can find an example report <a href="http://lyonanderson.org/report.html">here</a> taken from my iPhone . In the time period shown the battery had been draining but I had not been using it. The report shows that I was getting lots of push notifications concerned with the key value store. If I connect my iPad to the Charles Proxy I can see it&#8217;s constantly posting to keyvalueservice.icloud.com presumably in response to a push notification telling it something has changed.</p>
 
 <h2>Battery Drain</h2>
 
@@ -207,7 +207,9 @@ So I made a little iOS app based around it. Of course, IOKit is a private API on
     <link href="http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics/"/>
     <updated>2014-02-06T21:41:00+00:00</updated>
     <id>http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&#8217;ll be greeted with a screen asking you for a ticket number:</p>
+    <content type="html"><![CDATA[<p><em>Update</em> - There is some new information in <a href="2014/10/05/ios-diagnostics-part-2/">this</a> post relating to iOS 8. The instructions below for obtaining the data dump are still valid.</p>
+
+<p>I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&#8217;ll be greeted with a screen asking you for a ticket number:</p>
 
 <p><img src="http://www.lyonanderson.org/images/IMG_9491.PNG" alt="Screenshot" /></p>
 
