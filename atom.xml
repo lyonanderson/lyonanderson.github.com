@@ -4,7 +4,7 @@
   <title><![CDATA[Christopher Lyon Anderson]]></title>
   <link href="http://www.lyonanderson.org/atom.xml" rel="self"/>
   <link href="http://www.lyonanderson.org/"/>
-  <updated>2014-11-12T17:32:22+00:00</updated>
+  <updated>2014-11-13T11:49:20+00:00</updated>
   <id>http://www.lyonanderson.org/</id>
   <author>
     <name><![CDATA[Christopher Lyon Anderson]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS Diagnostics (Part 3)]]></title>
+    <link href="http://www.lyonanderson.org/blog/2014/11/13/ios-diagnostics-part-3/"/>
+    <updated>2014-11-13T11:33:00+00:00</updated>
+    <id>http://www.lyonanderson.org/blog/2014/11/13/ios-diagnostics-part-3</id>
+    <content type="html"><![CDATA[<p>Following up from my last <a href="http://www.lyonanderson.org/blog/2014/11/05/ios-diagnostics-part-2/">post</a> on analysing iOS diagnostics I decided to see if it was possible to get the logs without having to go through a proxy and the built in diagnostics app. A quick look using <a href="http://www.hopperapp.com/">Hopper</a> revealed that the built in diagnostics app uses a framework called <code>iOSDiagnosticsSupport.framework</code> to do the heavy lifting.</p>
+
+<p>Armed with this info I built a quick app to do on device diagnostics. I&#8217;ve covered most of the sections found in the report you could generate using the techniques I outlined in the last post. There are many more things I want to add, but this is a start. The project is on github <a href="https://github.com/lyonanderson/iOS-Diagnostics">here</a>. It needs more work  - especially on the iPad. I&#8217;ll be improving and adding more sections in the coming weeks and months. I&#8217;ve already found it useful in seeing more clearly what&#8217;s chewing up the battery on my iPad and iPhone. You can export your logs from the app using the share button.</p>
+
+<p><img src="https://raw.githubusercontent.com/lyonanderson/iOS-Diagnostics/master/screenshots/Screenshot1.png" alt="Screenshot" /></p>
+
+<p><img src="https://raw.githubusercontent.com/lyonanderson/iOS-Diagnostics/master/screenshots/Screenshot2.png" alt="Screenshot" /></p>
+
+<p><img src="https://raw.githubusercontent.com/lyonanderson/iOS-Diagnostics/master/screenshots/Screenshot3.png" alt="Screenshot" /></p>
+
+<div class="embed-video-container"><iframe src="http://www.lyonanderson.org//player.vimeo.com/video/111691295 "></iframe></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS Diagnostics (Part 2)]]></title>
