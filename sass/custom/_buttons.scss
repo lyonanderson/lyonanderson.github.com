@@ -1,0 +1,35 @@
+.btn {
+	padding: .4em .75em;
+	text-decoration: none;
+	border-radius: 3px;
+	margin: .5em .25em .5em;
+	line-height: 1.5em;
+	display: inline-block;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.btn-light {
+	color: $button-light-color;
+	border: 1px solid $button-light-border;
+
+	&:hover {
+		color: $white;
+		background: $button-light-hover-fill;
+		border: 1px solid $button-light-hover-border;
+	}
+}
+
+.btn-dark {
+	color: $button-dark-color;
+	border: 1px solid $button-dark-border;
+
+	&:hover {
+		color: $white;
+		background: $button-dark-hover-fill;
+		border: 1px solid $button-dark-hover-border;
+	}
+}

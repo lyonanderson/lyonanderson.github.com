@@ -1,0 +1,25 @@
+---
+layout: default
+single: true
+---
+
+<article class="post">
+    {% include article.html %}
+</article>
+
+{% unless page.sharing == false %}
+        {% include post/sharing.html %}
+{% endunless %}
+
+{% if site.disqus_short_name and page.comments == true %}
+<section id="comments">
+    <div id="disqus_thread">{% include post/disqus_thread.html %}</div>
+</section>
+{% endif %}
+{% if site.facebook_appid and page.comments == true %}
+  <section>
+    <h1>Comments</h1>
+    <div id="facebook_comments" aria-live="polite">{% include custom/facebook_comments.html %}</div>
+  </section>
+{% endif %}
+
