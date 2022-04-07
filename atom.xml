@@ -227,7 +227,7 @@ So I made a little iOS app based around it. Of course, IOKit is a private API on
     <link href="http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics/"/>
     <updated>2014-02-06T21:41:00+00:00</updated>
     <id>http://www.lyonanderson.org/blog/2014/02/06/ios-power-diagnostics</id>
-    <content type="html"><![CDATA[<p><em>Update</em> - There is some new information in <a href="http://www.lyonanderson.org/blog/2014/10/05/ios-diagnostics-part-2/">this</a> post relating to iOS 8. The instructions below for obtaining the data dump are still valid.</p>
+    <content type="html"><![CDATA[<p><em>Update</em> - There is some new information in <a href="http://www.lyonanderson.org/blog/2014/11/05/ios-diagnostics-part-2/">this</a> post relating to iOS 8. The instructions below for obtaining the data dump are still valid.</p>
 
 <p>I&#8217;ve recently been having a play with the iOS Diagnostics tool. It turns out that this tool can provide you with a treasure trove of information about your device. From which accessories you have connected, to extremely detailed power usage information. You can get to it by entering the URL <strong>diags://</strong> into Safari. <!-- more --> You&#8217;ll be greeted with a screen asking you for a ticket number:</p>
 
